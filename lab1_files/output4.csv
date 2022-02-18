@@ -1,7 +1,7 @@
 Car_ID,Year,Car_Make,Car_Model,Total_Points,Ranking
-113,2012,Acura,Tsx sportwagon,116,3
-112,2008,Acura,TL,110,5
-114,2015,Acura,TLX,102,7
+127,2013,Acura,Tsx,86,10
+106,2007,Acura,Tl type s,78,14
+103,2010,Acura,Tsx,72,16
 15,2014,Audi,S4,120,2
 18,2015,Audi,S3,38,33
 116,2008,Audi,A4,28,38
@@ -20,9 +20,9 @@ Car_ID,Year,Car_Make,Car_Model,Total_Points,Ranking
 137,2017,Ford,Focus rs,54,25
 120,2014,Ford,Focus st,30,37
 219,2016,Ford,Focus rs,26,39
-83,2014,Honda,Accord,112,4
-65,2009,Honda,Fit,106,6
-31,2007,Honda,Fit,102,7
+63,2010,Honda,Civic,86,10
+178,2009,Honda,Oddesy,72,16
+39,2011,Honda,Civic,72,16
 30,2012,Hyundai,Celoster,66,19
 38,2017,Hyundai,Elantra sport,62,21
 92,2017,Hyundai,Elantra sport,30,37
@@ -39,13 +39,13 @@ Car_ID,Year,Car_Make,Car_Model,Total_Points,Ranking
 25,2012,Mercedes,C250,78,14
 84,2012,Mercedes,Cl63amg,70,17
 17,2016,Mercedes,C43,34,35
-91,2010,Mitsu,Lancer,102,7
 140,1995,Mitsu,Evo8,44,30
 176,2014,Mitsu,Lancer,40,32
+163,2013,Mitsu,Ralliart,22,41
 19,2001,Mitsub,Evo7,40,32
-228,2010,Nissan,370,92,9
 153,2011,Nissan,370,84,11
 161,2012,Nissan,370z,84,11
+158,2007,Nissan,350z,64,20
 57,2015,Scion,Frs,80,13
 235,2013,Scion,Frs,20,42
 36,2016,Subaru,WRX,74,15
@@ -54,7 +54,7 @@ Car_ID,Year,Car_Make,Car_Model,Total_Points,Ranking
 110,2011,Toyota,Camry,58,23
 142,1993,Toyota,Supra,58,23
 43,2011,Toyota,4 Runner,54,25
-126,2010,Volkswagen,Eos,92,9
 180,2011,Volkswagen,Gti,82,12
 156,2014,Volkswagen,Gli,56,24
+6,2016,Volkswagen,Golf r,54,25
 100,2006,Volvo,S60r,22,41
