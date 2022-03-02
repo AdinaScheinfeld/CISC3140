@@ -21,6 +21,7 @@ Email TEXT
 
 -- create Judges table
 CREATE TABLE Judges(
+Timestamp DATETIME,
 Judge_ID TEXT,
 Judge_Name TEXT
 );
@@ -57,7 +58,7 @@ Mods_Overall INT
 
 -- create a temporary table with all columns
 CREATE TEMP TABLE _csv_import (
-Timestamp TEXT,
+Timestamp DATETIME,
 Email TEXT,
 Name TEXT,
 Year INT,
@@ -104,11 +105,14 @@ FROM _csv_import WHERE 1;
 DELETE FROM Cars WHERE Car_ID = 'Car_ID';
 
 -- add data to Judges table
-INSERT INTO Judges (Judge_ID, Judge_Name) SELECT Judge_ID, Judge_Name
+INSERT INTO Judges (Timestamp, Judge_ID, Judge_Name) SELECT Timestamp, Judge_ID, Judge_Name
 FROM _csv_import WHERE 1;
 
 -- delete top row of Judges table
 DELETE FROM Judges WHERE Judge_ID = 'Judge_ID';
+
+-- fix datetime formats in Judges table
+UPDATE Judges SET Timestamp = SUBSTR(Timestamp, 5, 4) || "-0" || SUBSTR(Timestamp, 1,1) || "-0" || SUBSTR(Timestamp, 3, 1) || " " || SUBSTR(Timestamp, 10, 2) || ":" || SUBSTR(Timestamp, 13, 2); 
 
 -- add data to Car_Score table
 INSERT INTO Car_Score (Car_ID, Racer_Turbo, Racer_Supercharged, Racer_Performance, Racer_Horsepower, Car_Overall, Engine_Modifications, Engine_Performance, Engine_Chrome, Engine_Detailing, Engine_Cleanliness, Body_Frame_Undercarriage, Body_Frame_Suspension, Body_Frame_Chrome, Body_Frame_Detailing, Body_Frame_Cleanliness, Mods_Paint, Mods_Body, Mods_Wrap, Mods_Rims, Mods_Interior, Mods_Other, Mods_ICE, Mods_Aftermarket, Mods_WIP, Mods_Overall) SELECT Car_ID, Racer_Turbo, Racer_Supercharged, Racer_Performance, Racer_Horsepower, Car_Overall, Engine_Modifications, Engine_Performance, Engine_Chrome, Engine_Detailing, Engine_Cleanliness, Body_Frame_Undercarriage, Body_Frame_Suspension, Body_Frame_Chrome, Body_Frame_Detailing, Body_Frame_Cleanliness, Mods_Paint, Mods_Body, Mods_Wrap, Mods_Rims, Mods_Interior, Mods_Other, Mods_ICE, Mods_Aftermarket, Mods_WIP, Mods_Overall
@@ -120,7 +124,7 @@ DELETE FROM Car_Score WHERE Car_ID = 'Car_ID';
 -- drop the temporary table
 DROP TABLE _csv_import;
 
-/* 2 */
+/* 2.1 */
 
 -- create a new table to hold all the car info
 DROP TABLE IF EXISTS All_Car_Info;
@@ -221,7 +225,59 @@ DROP TABLE old_Rank_Table;
 */
 
 -- PRAGMA table_info(Totals_Table);
+
+-- save output to csv file
+.headers ON
+.mode csv
+.output extract1.csv
 SELECT * FROM Rank_Table;
+
+/* 2.2 */
+
+.headers ON
+.mode csv
+.output extract2.csv
+-- group by car make
+SELECT Car_ID, Make, Total, MIN(Rank) AS Rank FROM Rank_Table GROUP BY Make;
+
+
+/* 3 */
+
+.headers ON
+.mode csv
+.output extract3.csv
+--SELECT * FROM Judges;
+
+-- count number of cars each judge has judged for the day
+SELECT Judge_ID, Judge_Name, COUNT(Timestamp) AS Num_Cars FROM Judges GROUP BY Judge_ID;
+
+-- create table to hold updated Judges info
+DROP TABLE IF EXISTS Updated_Judges;
+CREATE TABLE Updated_Judges(
+Judge_ID TEXT,
+Judge_Name TEXT,
+Num_Cars INT,
+Start_Timestamp DATETIME,
+End_Timestamp DATETIME,
+Duration DATETIME,
+Average REAL
+);
+
+-- add data to the Updated_Judges table
+SELECT Judge_ID, Judge_Name,
+COUNT(Timestamp) AS Num_Cars,
+MIN(Timestamp) AS Start_Timestamp,
+Max(Timestamp) AS End_Timestamp,
+CAST((JULIANDAY(Max(Timestamp)) - JULIANDAY(Min(Timestamp)))*24 AS INT) AS  Duration_Hrs,
+CAST(((JULIANDAY(MAX(Timestamp)) - JULIANDAY(MIN(Timestamp)))*24*60) AS INT) / COUNT(Timestamp) as Average_Min_Per_Car
+FROM Judges GROUP BY Judge_ID;
+
+
+
+
+SELECT JULIANDAY(MAX(Timestamp)) from Judges;
+SELECT MIN(Timestamp) from Judges;
+
 
 
 -- indicate the end of the script
