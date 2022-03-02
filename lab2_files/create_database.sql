@@ -231,8 +231,78 @@ SELECT * FROM Rank_Table;
 .headers ON
 .mode csv
 .output extract2.csv
-SELECT Car_ID, Make, Total, MIN(Rank) AS Rank FROM Rank_Table GROUP BY Make;
+--SELECT Car_ID, Make, Total, MIN(Rank) AS Rank FROM Rank_Table GROUP BY Make;
+--DELETE 
+--SELECT Car_ID, Make, Total FROM Rank_Table WHERE Rank = MIN(Rank) FROM Rank_Table GROUP BY Make;
+--SELECT * FROM Rank_Table;
 
+
+--SELECT *, GROUP_CONCAT(Car_ID, ','  AS ids FROM Rank_Table GROUP BY Mak;
+
+-- create a table for top ranked cars
+DROP TABLE IF EXISTS Rank_Table1;
+CREATE TABLE Rank_Table1(
+Car_ID INT,
+Make TEXT,
+Total INT,
+Rank1 INT
+);
+
+-- create a table for second ranked cars
+DROP TABLE IF EXISTS Rank_Table2;
+CREATE TABLE Rank_Table2(
+Car_ID INT,
+Make TEXT,
+Total INT,
+Rank2 INT
+);
+
+-- create a table for third ranked cars
+DROP TABLE IF EXISTS Rank_Table3;
+CREATE TABLE Rank_Table3(
+Car_ID INT,
+Make TEXT,
+Total INT,
+Rank3 INT
+);
+
+-- extract top ranked car from each car make
+INSERT INTO Rank_Table1(Car_ID, Make, Total, Rank1) 
+SELECT Car_ID, Make, Total, MIN(Rank) AS Rank1 FROM Rank_Table GROUP BY Make;
+
+-- delete top ranked cars from Rank_Table
+DELETE FROM Rank_Table WHERE EXISTS (SELECT * FROM Rank_Table1 WHERE Rank_Table1.Rank1 = Rank_Table.Rank);
+
+-- extract second ranked car from each car make
+INSERT INTO Rank_Table2(Car_ID, Make, Total, Rank2)
+SELECT Car_ID, Make, Total, MIN(Rank) AS Rank2 FROM Rank_Table GROUP BY Make;
+
+-- delete second ranked cars from Rank_Table
+DELETE FROM Rank_Table WHERE EXISTS (SELECT * FROM Rank_Table2 WHERE Rank_Table2.Rank2 = Rank_Table.Rank);
+
+-- extract third ranked car from each car make
+INSERT INTO Rank_Table3(Car_ID, Make, Total, Rank3)
+SELECT Car_ID, Make, Total, MIN(Rank) AS Rank3 FROM Rank_Table GROUP BY Make;
+
+-- delete third ranked cars from Rank_Table
+DELETE FROM Rank_Table WHERE EXISTS (SELECT * FROM Rank_Table3 WHERE Rank_Table3.Rank3 = Rank_Table.Rank);
+
+
+-- create table for grouped top 3 cars
+DROP TABLE IF EXISTS Top_Three;
+CREATE TABLE Top_Three(
+Car_ID INT,
+Make TEXT,
+Total INT,
+Rank INT
+);
+
+-- add the top three cars for each make into a table
+INSERT INTO Top_Three(Car_ID, Make, Total, Rank)
+SELECT * FROM Rank_Table1 UNION SELECT * FROM Rank_Table2 UNION SELECT * FROM Rank_Table3 ORDER BY Make, Rank1;
+
+-- save the top three of each car make to a file
+SELECT * FROM Top_Three;
 
 /* 3 */
 
