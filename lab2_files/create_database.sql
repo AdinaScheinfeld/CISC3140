@@ -4,6 +4,7 @@ sqlite3 lab2DB.db << 'EOS'
 .headers ON
 
 /* 1 */
+
 -- drop tables if they already exist
 DROP TABLE IF EXISTS Cars;
 DROP TABLE IF EXISTS Judges;
@@ -13,7 +14,7 @@ DROP TABLE IF EXISTS Car_Score;
 CREATE TABLE Cars(
 Car_ID INT PRIMARY KEY,
 Year INT,
-Make Text,
+Make TEXT,
 Model TEXT,
 Name TEXT,
 Email TEXT
@@ -56,7 +57,7 @@ Mods_WIP INT,
 Mods_Overall INT
 );
 
--- create a temporary table with all columns
+-- create a temporary table with all columns in CSV file
 CREATE TEMP TABLE _csv_import (
 Timestamp DATETIME,
 Email TEXT,
@@ -93,9 +94,8 @@ Mods_Aftermarket INT,
 Mods_WIP INT,
 Mods_Overall INT
 );
-.separator ","
--- .mode csv
-.import ../lab1_files/data_lab1/top50data.csv _csv_import
+.mode csv
+.import ../lab1_files/data_lab1/data.csv _csv_import
 
 -- add data to Cars table
 INSERT INTO Cars (Car_ID, Year, Make, Model, Name, Email) SELECT Car_ID, Year, Make, Model, Name, Email
@@ -126,7 +126,7 @@ DROP TABLE _csv_import;
 
 /* 2.1 */
 
--- create a new table to hold all the car info
+-- create a new table to hold all the car info (from Cars and Car_Score)
 DROP TABLE IF EXISTS All_Car_Info;
 CREATE TABLE All_Car_Info(
 Car_ID INT,
@@ -178,7 +178,7 @@ Total INT
 );
 
 -- compute the total score for each row
-INSERT INTO Totals_Table  SELECT Car_ID, Year, Make, Model, (Racer_Turbo + Racer_Supercharged + Racer_Performance + Racer_Horsepower + Car_Overall + Engine_Modifications + Engine_Performance + Engine_Chrome + Engine_Detailing + Engine_Cleanliness + Body_Frame_Undercarriage + Body_Frame_Suspension + Body_Frame_Chrome + Body_Frame_Detailing + Body_Frame_Cleanliness + Mods_Paint + Mods_Body + Mods_Wrap + Mods_Rims + Mods_Interior + Mods_Other + Mods_ICE + Mods_Aftermarket + Mods_WIP + Mods_Overall) AS  "Total"
+INSERT INTO Totals_Table  SELECT Car_ID, Year, Make, Model, (Racer_Turbo + Racer_Supercharged + Racer_Performance + Racer_Horsepower + Car_Overall + Engine_Modifications + Engine_Performance + Engine_Chrome + Engine_Detailing + Engine_Cleanliness + Body_Frame_Undercarriage + Body_Frame_Suspension + Body_Frame_Chrome + Body_Frame_Detailing + Body_Frame_Cleanliness + Mods_Paint + Mods_Body + Mods_Wrap + Mods_Rims + Mods_Interior + Mods_Other + Mods_ICE + Mods_Aftermarket + Mods_WIP + Mods_Overall) AS  Total
 FROM All_Car_Info;
 
 -- create table to hold ranked cars
@@ -194,7 +194,8 @@ Rank INT
 
 
 -- add data from Totals_Table into Rank_Table and order
-INSERT INTO Rank_Table(Car_ID, Year, Make, Model, Total) SELECT Car_ID, Year,     Make, Model, Total FROM Totals_Table ORDER BY Total DESC;
+INSERT INTO Rank_Table(Car_ID, Year, Make, Model, Total) SELECT Car_ID, Year, Make, Model, Total
+FROM Totals_Table ORDER BY Total DESC;
 
 
 -- rename Rank_Table to old_Rank_Table
@@ -212,19 +213,11 @@ Rank INT
 );
 
 -- add row id to Rank_Table as ranking
-INSERT INTO Rank_Table(Car_ID, Year, Make, Model, Total, Rank) SELECT Car_ID, Year, Make, Model, Total, rowid  FROM old_Rank_Table;
+INSERT INTO Rank_Table(Car_ID, Year, Make, Model, Total, Rank) SELECT Car_ID, Year, Make, Model, Total, rowid
+FROM old_Rank_Table;
 
 -- drop old_Rank_Table
 DROP TABLE old_Rank_Table;
-
-
-/*
--- display the databases, tables, and table columns
-.databases
-.tables
-*/
-
--- PRAGMA table_info(Totals_Table);
 
 -- save output to csv file
 .headers ON
@@ -234,22 +227,19 @@ SELECT * FROM Rank_Table;
 
 /* 2.2 */
 
+-- declare output file
 .headers ON
 .mode csv
 .output extract2.csv
--- group by car make
 SELECT Car_ID, Make, Total, MIN(Rank) AS Rank FROM Rank_Table GROUP BY Make;
 
 
 /* 3 */
 
+-- declare output file
 .headers ON
 .mode csv
 .output extract3.csv
---SELECT * FROM Judges;
-
--- count number of cars each judge has judged for the day
-SELECT Judge_ID, Judge_Name, COUNT(Timestamp) AS Num_Cars FROM Judges GROUP BY Judge_ID;
 
 -- create table to hold updated Judges info
 DROP TABLE IF EXISTS Updated_Judges;
@@ -263,21 +253,14 @@ Duration DATETIME,
 Average REAL
 );
 
--- add data to the Updated_Judges table
+-- add data to the Updated_Judges table using a single query
 SELECT Judge_ID, Judge_Name,
 COUNT(Timestamp) AS Num_Cars,
 MIN(Timestamp) AS Start_Timestamp,
-Max(Timestamp) AS End_Timestamp,
-CAST((JULIANDAY(Max(Timestamp)) - JULIANDAY(Min(Timestamp)))*24 AS INT) AS  Duration_Hrs,
+MAX(Timestamp) AS End_Timestamp,
+CAST((JULIANDAY(MAX(Timestamp)) - JULIANDAY(MIN(Timestamp)))*24 AS INT) AS  Duration_Hrs,
 CAST(((JULIANDAY(MAX(Timestamp)) - JULIANDAY(MIN(Timestamp)))*24*60) AS INT) / COUNT(Timestamp) as Average_Min_Per_Car
 FROM Judges GROUP BY Judge_ID;
-
-
-
-
-SELECT JULIANDAY(MAX(Timestamp)) from Judges;
-SELECT MIN(Timestamp) from Judges;
-
 
 
 -- indicate the end of the script
