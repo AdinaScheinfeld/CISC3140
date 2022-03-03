@@ -318,8 +318,8 @@ Judge_Name TEXT,
 Num_Cars INT,
 Start_Timestamp DATETIME,
 End_Timestamp DATETIME,
-Duration DATETIME,
-Average REAL
+Duration INT,
+Average INT
 );
 
 -- add data to the Updated_Judges table using a single query
