@@ -331,6 +331,5 @@ CAST((JULIANDAY(MAX(Timestamp)) - JULIANDAY(MIN(Timestamp)))*24 AS INT) AS  Dura
 CAST(((JULIANDAY(MAX(Timestamp)) - JULIANDAY(MIN(Timestamp)))*24*60) AS INT) / COUNT(Timestamp) as Average_Min_Per_Car
 FROM Judges GROUP BY Judge_ID;
 
-
 -- indicate the end of the script
 EOS
