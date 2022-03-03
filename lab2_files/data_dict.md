@@ -71,8 +71,8 @@
 |Judge_ID|TEXT|No|No|Unique ID identifying each judge|
 |Judge_Name|TEXT|No|No|Name of each judge|
 |Num_Cars|INT|No|No|Number of cars judged by each judge|
-|Start_Timestamp|DATETIME|No|No|First timestamp of each judge''s judging for the day|
-|End_Timestamp|DATETIME|No|No|Final timestamp of each judge''s judging for the day|
+|Start_Timestamp|DATETIME|No|No|First timestamp of each judge's judging for the day|
+|End_Timestamp|DATETIME|No|No|Final timestamp of each judge's judging for the day|
 |Duration|INT|No|No|Duration (in hours) between start and end times for each judge|
 |Average|INT|No|No|Average speed (in minutes per car) for each judge|
 
