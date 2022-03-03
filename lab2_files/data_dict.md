@@ -46,3 +46,46 @@
 |Mods_Aftermarket|INT|No|No|Score for the aftermarket modifications of each car|
 |Mods_WIP|INT|No|No|Score for the WIP modifications of each car|
 |Mods_Overall|INT|No|No|Score for the overall modifications of each car|
+
+### Rank_Table
+|Column Name|Data Type|Required?|Primary Key?|Description|
+|-----------|---------|---------|------------|-----------|
+|Car_ID|INT|No|No|Unique ID number identifying each car|
+|Year|INT|No|No|Year of each car|
+|Make|TEXT|No|No|Make of each car|
+|Model|TEXT|No|No|Model of each car|
+|Total|INT|No|No|Total score of each car|
+|Rank|INT|No|No|Rank of each car based on the total scores|
+
+### Top_Three
+|Column Name|Data Type|Required?|Primary Key?|Description|
+|-----------|---------|----------|-----------|-----------|
+|Car_ID|INT|No|No|Unique ID number identifying each car|
+|Make|TEXT|No|No|Make of each car|
+|Total|INT|No|No|Total score of each car|
+|Rank|INT|No|No|Rank of each car based on the total scores|
+
+### Updated_Judges
+|Column Name|Data Type|Required?|Primary Key?|Description|
+|-----------|---------|---------|------------|-----------|
+|Judge_ID|TEXT|No|No|Unique ID identifying each judge|
+|Judge_Name|TEXT|No|No|Name of each judge|
+|Num_Cars|INT|No|No|Number of cars judged by each judge|
+|Start_Timestamp|DATETIME|No|No|First timestamp of each judge''s judging for the day|
+|End_Timestamp|DATETIME|No|No|Final timestamp of each judge''s judging for the day|
+|Duration|INT|No|No|Duration (in hours) between start and end times for each judge|
+|Average|INT|No|No|Average speed (in minutes per car) for each judge|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
