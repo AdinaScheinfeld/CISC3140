@@ -14,3 +14,10 @@ lab1:
 	awk -f lab1_files/script4.awk lab1_files/output3.csv > lab1_files/output4.csv
 
 	# output4 now contains the second requirement
+
+lab2:
+	# change access permissions to allow create_database.sql to be executed
+	chmod u+x lab2_files/create_database.sql
+
+	# execute create_database.sql
+	./lab2_files/create_database.sql

@@ -1,5 +1,5 @@
 #!/bin/bash
-sqlite3 lab2DB.db << 'EOS'
+sqlite3 lab2_files/lab2DB.db << 'EOS'
 
 .headers ON
 
@@ -95,7 +95,10 @@ Mods_WIP INT,
 Mods_Overall INT
 );
 .mode csv
-.import ../lab1_files/data_lab1/data.csv _csv_import
+-- use this line when running script from lab2_files folder
+--.import ../lab1_files/data_lab1/data.csv _csv_import
+-- use this line when running script using make lab2 from parent folder
+.import lab1_files/data_lab1/data.csv _csv_import
 
 -- add data to Cars table
 INSERT INTO Cars (Car_ID, Year, Make, Model, Name, Email) SELECT Car_ID, Year, Make, Model, Name, Email
@@ -220,7 +223,7 @@ DROP TABLE old_Rank_Table;
 -- save output to csv file
 .headers ON
 .mode csv
-.output extract1.csv
+.output lab2_files/extract1.csv
 SELECT * FROM Rank_Table;
 
 -- drop unused tables
@@ -232,7 +235,7 @@ DROP TABLE IF EXISTS Totals_Table;
 -- declare output file
 .headers ON
 .mode csv
-.output extract2.csv
+.output lab2_files/extract2.csv
 
 -- create a table for top ranked cars
 DROP TABLE IF EXISTS Rank_Table1;
@@ -308,7 +311,7 @@ DROP TABLE IF EXISTS Rank_Table3;
 -- declare output file
 .headers ON
 .mode csv
-.output extract3.csv
+.output lab2_files/extract3.csv
 
 -- create table to hold updated Judges info
 DROP TABLE IF EXISTS Updated_Judges;
