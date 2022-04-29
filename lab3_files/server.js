@@ -48,7 +48,7 @@ app.get("/api/cars", (req, res, next) => {
     });
 });
 
-//endpoint to get a list of owners in the Cars table
+//endpoint to get a list of owners in the Owners table
 app.get("/api/owners", (req, res, next) => {
 
     // initialize the sql command and the parameter array
@@ -94,7 +94,7 @@ app.get("/api/cars/:carid", (req, res, next) => {
     });
 });
 
-// endpoint to get a single owner by name
+// endpoint to get a single owner by Car ID
 app.get("/api/owners/:name", (req, res, next) => {
 
     // initialize the sql command and the parameter array
@@ -293,7 +293,8 @@ app.patch("/api/cars/:carid", (req, res, next) => {
     }
 
     // initialize the sql command and the parameter array
-    var sql = `UPDATE Cars SET Year = ?, Make = ?, Model = ?, Racer_Turbo = ?, Racer_Supercharged = ?, Racer_Performance = ?, Racer_Horsepower = ?, Car_Overall = ?, Engine_Modifications = ?, Engine_Performance = ?, Engine_Chrome = ?, Engine_Detailing = ?, Engine_Cleanliness = ?, Body_Frame_Undercarriage = ?, Body_Frame_Suspension = ?, Body_Frame_Chrome = ?, Body_Frame_Detailing = ?, Body_Frame_Cleanliness = ?, Mods_Paint = ?, Mods_Body = ?, Mods_Wrap = ?, Mods_Rims = ?, Mods_Interior = ?, Mods_Other = ?, Mods_ICE = ?, Mods_Aftermarket = ?, Mods_WIP = ?, Mods_Overall = ? WHERE Car_ID = ?`;
+    // COALSCE allows the user to update some fields and leave others with their initial values
+    var sql = `UPDATE Cars SET Year = COALESCE(?, Year), Make = COALESCE(?, Make), Model = COALESCE(?, Model), Racer_Turbo = COALESCE(?, Racer_Turbo), Racer_Supercharged = COALESCE(?, Racer_Supercharged), Racer_Performance = COALESCE(?, Racer_Performance), Racer_Horsepower = COALESCE(?, Racer_Horsepower), Car_Overall = COALESCE(?, Car_Overall), Engine_Modifications = COALESCE(?, Engine_Modifications), Engine_Performance = COALESCE(?, Engine_Performance), Engine_Chrome = COALESCE(?, Engine_Chrome), Engine_Detailing = COALESCE(?, Engine_Detailing), Engine_Cleanliness = COALESCE(?, Engine_Cleanliness), Body_Frame_Undercarriage = COALESCE(?, Body_Frame_Undercarriage), Body_Frame_Suspension = COALESCE(?, Body_Frame_Suspension), Body_Frame_Chrome = COALESCE(?, Body_Frame_Chrome), Body_Frame_Detailing = COALESCE(?, Body_Frame_Detailing), Body_Frame_Cleanliness = COALESCE(?, Body_Frame_Cleanliness), Mods_Paint = COALESCE(?, Mods_Paint), Mods_Body = COALESCE(?, Mods_Body), Mods_Wrap = COALESCE(?, Mods_Wrap), Mods_Rims = COALESCE(?, Mods_Rims), Mods_Interior = COALESCE(?, Mods_Interior), Mods_Other = COALESCE(?, Mods_Other), Mods_ICE = COALESCE(?, Mods_ICE), Mods_Aftermarket = COALESCE(?, Mods_Aftermarket), Mods_WIP = COALESCE(?, Mods_WIP), Mods_Overall = COALESCE(?, Mods_Overall) WHERE Car_ID = ?`;
     var params = [data.year, data.make, data.model, data.racerturbo, data.racersupercharged, data.racerperformance, data.racerhorsepower, data.caroverall, data.enginemodifications, data.engineperformance, data.enginechrome, data.enginedetailing, data.enginecleanliness, data.bfundercarriage, data.bfsuspension, data.bfchrome, data.bfdetailing, data.bfcleanliness, data.modspaint, data.modsbody, data.modswrap, data.modsrims, data.modsinterior, data.modsother, data.modsice, data.modsaftermarket, data.modswip, data.modsoverall, data.carid];
 
     db.run(sql, params, function(err) {
@@ -315,7 +316,7 @@ app.patch("/api/cars/:carid", (req, res, next) => {
     })
 })
 
-// endpoint to update a user
+// endpoint to update an owner
 app.patch("/api/owners/:carid", (req, res, next) => {
 
     // create data object
@@ -326,7 +327,8 @@ app.patch("/api/owners/:carid", (req, res, next) => {
     }
 
     // initialize the sql command and the parameter array
-    var sql = `UPDATE Owners SET Name = ?, Email = ? WHERE Car_ID = ?`;
+    // COALSCE allows the user to update some fields and leave others with their initial values
+    var sql = `UPDATE Owners SET Name = COALESCE(?, Name), Email = COALESCE(?, Email) WHERE Car_ID = ?`;
     var params = [data.name, data.email, data.carid];
 
     db.run(sql, params, function(err) {
