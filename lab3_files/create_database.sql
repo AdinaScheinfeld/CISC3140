@@ -3,6 +3,7 @@ sqlite3 lab3DB.db << 'EOS'
 
 -- display output with headers
 .headers ON
+-- indicate that data is in csv format
 .mode csv
 
 -- drop tables if they already exist
@@ -87,10 +88,10 @@ Mods_WIP INT,
 Mods_Overall INT
 );
 
--- import the data from the file
+-- import the data from the file to the temporary table
 .import data/data.csv _csv_import
 
--- add data to Cars table
+-- add data from temporary table to Cars table
 INSERT INTO Cars (Car_ID, Year, Make, Model, 
 Racer_Turbo, Racer_Supercharged, Racer_Performance, Racer_Horsepower, 
 Car_Overall, 
@@ -110,7 +111,7 @@ FROM _csv_import WHERE 1;
 -- delete top row of Cars table
 DELETE FROM Cars WHERE Car_ID = 'Car_ID';
 
--- add data to Owners table
+-- add data from temporary table to Owners table
 INSERT INTO Owners (Car_ID, Name, Email) SELECT Car_ID, Name, Email
 FROM _csv_import WHERE 1;
 

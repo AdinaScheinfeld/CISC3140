@@ -1,52 +1,69 @@
 // create express app
 var express = require("express")
 var app = express()
+
+// connect to the database
 var db = require("./database.js")
 
+// parse json data
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
-// server port
+// initialize server port
 var HTTP_PORT = 8000
 
 // start server
 app.listen(HTTP_PORT, () => {
+
+    // display a mesage to the console indicating which port is being used
     console.log("Server running on port %PORT%".replace("%PORT%", HTTP_PORT))
 });
 
 // root endpoint
 app.get("/", (req, res, next) => {
-    res.json({"message":"Ok"})
+    res.json({"message": "You have reached the root of the Car Data API for CISC 3140 Lab 4."})
 });
-
-// insert other API endpoints here
 
 //endpoint to get a list of cars in the Cars table
 app.get("/api/cars", (req, res, next) => {
+
+    // initialize the sql command and the parameter array
     var sql = "SELECT * FROM Cars"
     var params = []
+
     db.all(sql, params, (err, rows) => {
+
+        // error checking
         if(err) {
-            res.status(400).json({"error":err.message});
+            res.status(400).json({"error": err.message});
             return;
         }
+
+        // successful execution 
         res.json({
-            "message":"success",
-            "data":rows
+            "message": "success",
+            "data": rows
         })
     });
 });
 
 //endpoint to get a list of owners in the Cars table
 app.get("/api/owners", (req, res, next) => {
+
+    // initialize the sql command and the parameter array
     var sql = "SELECT * FROM Owners"
     var params = []
+
     db.all(sql, params, (err, rows) => {
+
+        // error checking
         if(err) {
             res.status(400).json({"error":err.message});
             return;
         }
+
+        // successful execution
         res.json({
             "message":"success",
             "data":rows
@@ -54,34 +71,22 @@ app.get("/api/owners", (req, res, next) => {
     });
 });
 
-// UP TO HERE
-
-// endpoint to get a list of cars by class
-// app.get("/api/cars/", (req, res, next) => {
-//     var sql = "SELECT * FROM Cars WHERE Make = ?"
-//     //var params = [req.params.make]
-//     var queries = [req.query.make]
-//     db.each(sql, /*params,*/ queries, (err, row) => {
-//         if(err) {
-//             res.status(400).json({"error":err.message});
-//             return;
-//         }
-//         res.json({
-//             "message":"success",
-//             "data":row
-//         });
-//     });
-// })
-
 // endpoint to get a single car by ID
 app.get("/api/cars/:carid", (req, res, next) => {
+
+    // initialize the sql command and the parameter array
     var sql = "SELECT * FROM Cars WHERE Car_ID = ?"
     var params = [req.params.carid]
+
     db.get(sql, params, (err, row) => {
+
+        // error checking
         if(err) {
             res.status(400).json({"error":err.message});
             return;
         }
+
+        // successful execution
         res.json({
             "message":"success",
             "data":row
@@ -91,13 +96,20 @@ app.get("/api/cars/:carid", (req, res, next) => {
 
 // endpoint to get a single owner by name
 app.get("/api/owners/:name", (req, res, next) => {
+
+    // initialize the sql command and the parameter array
     var sql = "SELECT * FROM Owners WHERE Name = ?"
     var params = [req.params.name]
+
     db.get(sql, params, (err, row) => {
+
+        // error checking
         if(err) {
             res.status(400).json({"error":err.message});
             return;
         }
+
+        // successful execution
         res.json({
             "message":"success",
             "data":row
@@ -107,6 +119,8 @@ app.get("/api/owners/:name", (req, res, next) => {
 
 // endpoint to add a new car
 app.post("/api/cars/", (req, res, next) => {
+
+    // create an array of potential errors
     var errors = []
     if(!req.body.carid) { errors.push("No Car ID specified"); }
     if(!req.body.year) { errors.push("No Year specified"); }
@@ -138,11 +152,13 @@ app.post("/api/cars/", (req, res, next) => {
     if(!req.body.modswip) { errors.push("No Mods WIP score specified"); }
     if(!req.body.modsoverall) { errors.push("No Mods Overall specified"); }
 
+    // indicate any errors
     if(errors.length) {
         res.status(400).json({"error": errors.join(",")});
         return;
     }
 
+    // create a data object
     var data = {
         carid: req.body.carid,
         year: req.body.year,
@@ -175,13 +191,20 @@ app.post("/api/cars/", (req, res, next) => {
         modsoverall: req.body.modsoverall
     }
 
+    // initialize the sql command and the parameter array
     var sql = 'INSERT INTO Cars (Car_ID, Year, Make, Model, Racer_Turbo, Racer_Supercharged, Racer_Performance, Racer_Horsepower, Car_Overall, Engine_Modifications, Engine_Performance, Engine_Chrome, Engine_Detailing, Engine_Cleanliness, Body_Frame_Undercarriage, Body_Frame_Suspension, Body_Frame_Chrome, Body_Frame_Detailing, Body_Frame_Cleanliness, Mods_Paint, Mods_Body, Mods_Wrap, Mods_Rims, Mods_Interior, Mods_Other, Mods_ICE, Mods_Aftermarket, Mods_WIP, Mods_Overall) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
     var params = [data.carid, data.year, data.make, data.model, data.racerturbo, data.racersupercharged, data.racerperformance, data.racerhorsepower, data.caroverall, data.enginemodifications, data.engineperformance, data.enginechrome, data.enginedetailing, data.enginecleanliness, data.bfundercarriage, data.bfsuspension, data.bfchrome, data.bfdetailing, data.bfcleanliness, data.modspaint, data.modsbody, data.modswrap, data.modsrims, data.modsinterior, data.modsother, data.modsice, data.modsaftermarket, data.modswip, data.modsoverall]
+    
+    
     db.run(sql, params, function(err, result) {
+
+        // error checking
         if(err) {
             res.status(400).json({"error":err.message})
             return;
         }
+
+        // successful execution
         res.json({
             "message": "success",
             "data": data,
@@ -192,28 +215,39 @@ app.post("/api/cars/", (req, res, next) => {
 
 // endpoint to add a new owner
 app.post("/api/owners/", (req, res, next) => {
+
+    // create an array of potential errors
     var errors = []
     if(!req.body.carid) { errors.push("No Car ID specified"); }
     if(!req.body.name) { errors.push("No Name specified"); }
     if(!req.body.email) { errors.push("No Email specified"); }
+
+    // indicate any errors
     if(errors.length) {
         res.status(400).json({"error": errors.join(",")});
         return;
     }
 
+    // create a data object
     var data = {
         carid: req.body.carid,
         name: req.body.name,
         email: req.body.email
     }
 
+    // initialize the sql command and the parameter array
     var sql = 'INSERT INTO Owners (Car_ID, Name, Email) VALUES (?, ?, ?)'
     var params = [data.carid, data.name, data.email]
+   
     db.run(sql, params, function(err, result) {
+
+        // error checking
         if(err) {
             res.status(400).json({"error": err.message})
             return;
         }
+
+        // successful execution
         res.json({
             "message": "success",
             "data": data,
@@ -224,6 +258,8 @@ app.post("/api/owners/", (req, res, next) => {
 
 // endpoint to update a car
 app.patch("/api/cars/:carid", (req, res, next) => {
+
+    // create data object
     var data = {
         year: req.body.year,
         make: req.body.make, 
@@ -256,15 +292,22 @@ app.patch("/api/cars/:carid", (req, res, next) => {
         carid: req.params.carid
     }
 
+    // initialize the sql command and the parameter array
     var sql = `UPDATE Cars SET Year = ?, Make = ?, Model = ?, Racer_Turbo = ?, Racer_Supercharged = ?, Racer_Performance = ?, Racer_Horsepower = ?, Car_Overall = ?, Engine_Modifications = ?, Engine_Performance = ?, Engine_Chrome = ?, Engine_Detailing = ?, Engine_Cleanliness = ?, Body_Frame_Undercarriage = ?, Body_Frame_Suspension = ?, Body_Frame_Chrome = ?, Body_Frame_Detailing = ?, Body_Frame_Cleanliness = ?, Mods_Paint = ?, Mods_Body = ?, Mods_Wrap = ?, Mods_Rims = ?, Mods_Interior = ?, Mods_Other = ?, Mods_ICE = ?, Mods_Aftermarket = ?, Mods_WIP = ?, Mods_Overall = ? WHERE Car_ID = ?`;
     var params = [data.year, data.make, data.model, data.racerturbo, data.racersupercharged, data.racerperformance, data.racerhorsepower, data.caroverall, data.enginemodifications, data.engineperformance, data.enginechrome, data.enginedetailing, data.enginecleanliness, data.bfundercarriage, data.bfsuspension, data.bfchrome, data.bfdetailing, data.bfcleanliness, data.modspaint, data.modsbody, data.modswrap, data.modsrims, data.modsinterior, data.modsother, data.modsice, data.modsaftermarket, data.modswip, data.modsoverall, data.carid];
 
     db.run(sql, params, function(err) {
+
+        // error checking
         if(err) {
             return console.error(err.message);
         }
+
+        // print message to console indicating how many changes occurred
         console.log(`Row(s) updated: ${this.changes}`);
     });
+
+    // successful execution
     res.json({
         message: "success",
         data: data,
@@ -275,21 +318,29 @@ app.patch("/api/cars/:carid", (req, res, next) => {
 // endpoint to update a user
 app.patch("/api/owners/:carid", (req, res, next) => {
 
+    // create data object
     var data = {
         name: req.body.name,
         email: req.body.email,
         carid: req.params.carid
     }
 
+    // initialize the sql command and the parameter array
     var sql = `UPDATE Owners SET Name = ?, Email = ? WHERE Car_ID = ?`;
     var params = [data.name, data.email, data.carid];
 
     db.run(sql, params, function(err) {
+
+        // error checking
         if(err) {
             return console.error(err.message);
         }
+
+        //print message to console indicating how many changes occurred
         console.log(`Row(s) updated: ${this.changes}`);
     });
+
+    // successful execution
     res.json({
         message: "success",
         data: data,
