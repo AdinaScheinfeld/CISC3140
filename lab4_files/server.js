@@ -131,128 +131,69 @@ app.get("/api/owners/:name", (req, res, next) => {
     });
 });
 
-// endpoint to add a new car
+// endpoint to add a new car/new cars
+// multiple cars can be added as JSON objects
 app.post("/api/cars/", (req, res, next) => {
 
-    // create an array of potential errors
-    var errors = []
-    if(!req.body.carid) { errors.push("No Car ID specified"); }
-    if(!req.body.year) { errors.push("No Year specified"); }
-    if(!req.body.make) { errors.push("No Make specified"); }
-    if(!req.body.model) { errors.push("No Model specified"); }
-    if(!req.body.racerturbo) { errors.push("No Racer Turbo score specified"); }
-    if(!req.body.racersupercharged) { errors.push("No Racer Supercharged score specified"); }
-    if(!req.body.racerperformance) { errors.push("No Racer Performance score specified"); }
-    if(!req.body.racerhorsepower) { errors.push("No Racer Horsepower score specified"); }
-    if(!req.body.caroverall) { errors.push("No Car Overall score specified"); }
-    if(!req.body.enginemodifications) { errors.push("No Engine Modifications score specified"); }
-    if(!req.body.engineperformance) { errors.push("No Engine Performance score specified"); }
-    if(!req.body.enginechrome) { errors.push("No Engine Chrome score specified"); }
-    if(!req.body.enginedetailing) { errors.push("No Engine Detailing score specified"); }
-    if(!req.body.enginecleanliness) { errors.push("No Engine Cleanliness score specified"); }
-    if(!req.body.bfundercarriage) { errors.push("No Body Frame Undercarriage score specified"); }
-    if(!req.body.bfsuspension) { errors.push("No Body Frame Suspension score specified"); }
-    if(!req.body.bfchrome) { errors.push("No Body Frame Chrome score specified"); }
-    if(!req.body.bfdetailing) { errors.push("No Body Frame Detailing score specified"); }
-    if(!req.body.bfcleanliness) { errors.push("No Body Frame Cleanliness score specified"); }
-    if(!req.body.modspaint) { errors.push("No Mods Paint score specified"); }
-    if(!req.body.modsbody) { errors.push("No Mods Body score specified"); }
-    if(!req.body.modswrap) { errors.push("No Mods Wrap score specified"); }
-    if(!req.body.modsrims) { errors.push("No Mods Rims score specified"); }
-    if(!req.body.modsinterior) { errors.push("No Mods Interior score specified"); }
-    if(!req.body.modsother) { errors.push("No Mods Other score specified"); }
-    if(!req.body.modsice) { errors.push("No Mods ICE score specified"); }
-    if(!req.body.modsaftermarket) { errors.push("No Mods Aftermarket score specified"); }
-    if(!req.body.modswip) { errors.push("No Mods WIP score specified"); }
-    if(!req.body.modsoverall) { errors.push("No Mods Overall specified"); }
-
-    // indicate any errors
-    if(errors.length) {
-        res.status(400).json({"error": errors.join(",")});
-        return;
-    }
-
-    // create a data object
-    var data = {
-        carid: req.body.carid,
-        year: req.body.year,
-        make: req.body.make,
-        model: req.body.model,
-        racerturbo: req.body.racerturbo,
-        racersupercharged: req.body.racersupercharged,
-        racerperformance: req.body.racerperformance, 
-        racerhorsepower: req.body.racerhorsepower,
-        caroverall: req.body.caroverall,
-        enginemodifications: req.body.enginemodifications,
-        engineperformance: req.body.engineperformance,
-        enginechrome: req.body.enginechrome,
-        enginedetailing: req.body.enginedetailing,
-        enginecleanliness: req.body.enginecleanliness,
-        bfundercarriage: req.body.bfundercarriage,
-        bfsuspension: req.body.bfsuspension,
-        bfchrome: req.body.bfchrome,
-        bfdetailing: req.body.bfdetailing,
-        bfcleanliness: req.body.bfcleanliness,
-        modspaint: req.body.modspaint,
-        modsbody: req.body.modsbody,
-        modswrap: req.body.modswrap,
-        modsrims: req.body.modsrims,
-        modsinterior: req.body.modsinterior,
-        modsother: req.body.modsother,
-        modsice: req.body.modsice,
-        modsaftermarket: req.body.modsaftermarket,
-        modswip: req.body.modswip,
-        modsoverall: req.body.modsoverall
-    }
-
-    // initialize the sql command and the parameter array
+    // initialize the sql command, the parameter array, and a coutner fo rhte number of objects to insert
     var sql = 'INSERT INTO Cars (Car_ID, Year, Make, Model, Racer_Turbo, Racer_Supercharged, Racer_Performance, Racer_Horsepower, Car_Overall, Engine_Modifications, Engine_Performance, Engine_Chrome, Engine_Detailing, Engine_Cleanliness, Body_Frame_Undercarriage, Body_Frame_Suspension, Body_Frame_Chrome, Body_Frame_Detailing, Body_Frame_Cleanliness, Mods_Paint, Mods_Body, Mods_Wrap, Mods_Rims, Mods_Interior, Mods_Other, Mods_ICE, Mods_Aftermarket, Mods_WIP, Mods_Overall) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
-    var params = [data.carid, data.year, data.make, data.model, data.racerturbo, data.racersupercharged, data.racerperformance, data.racerhorsepower, data.caroverall, data.enginemodifications, data.engineperformance, data.enginechrome, data.enginedetailing, data.enginecleanliness, data.bfundercarriage, data.bfsuspension, data.bfchrome, data.bfdetailing, data.bfcleanliness, data.modspaint, data.modsbody, data.modswrap, data.modsrims, data.modsinterior, data.modsother, data.modsice, data.modsaftermarket, data.modswip, data.modsoverall]
-    
-    
-    db.run(sql, params, function(err, result) {
+    var params = []
+    let numObjsToInsert = 0;
 
-        // error checking
-        if(err) {
-            res.status(400).json({"error":err.message})
+    // loop trhough the request body that was passed in
+    for(var obj in req.body.bulk) {
+
+        // create an array of potential errors
+        var errors = []
+        if(!req.body.bulk[obj].carid) { errors.push("No Car ID specified"); }
+        if(!req.body.bulk[obj].year) { errors.push("No Year specified"); }
+        if(!req.body.bulk[obj].make) { errors.push("No Make specified"); }
+        if(!req.body.bulk[obj].model) { errors.push("No Model specified"); }
+        if(!req.body.bulk[obj].racerturbo) { errors.push("No Racer Turbo score specified"); }
+        if(!req.body.bulk[obj].racersupercharged) { errors.push("No Racer Supercharged score specified"); }
+        if(!req.body.bulk[obj].racerperformance) { errors.push("No Racer Performance score specified"); }
+        if(!req.body.bulk[obj].racerhorsepower) { errors.push("No Racer Horsepower score specified"); }
+        if(!req.body.bulk[obj].caroverall) { errors.push("No Car Overall score specified"); }
+        if(!req.body.bulk[obj].enginemodifications) { errors.push("No Engine Modifications score specified"); }
+        if(!req.body.bulk[obj].engineperformance) { errors.push("No Engine Performance score specified"); }
+        if(!req.body.bulk[obj].enginechrome) { errors.push("No Engine Chrome score specified"); }
+        if(!req.body.bulk[obj].enginedetailing) { errors.push("No Engine Detailing score specified"); }
+        if(!req.body.bulk[obj].enginecleanliness) { errors.push("No Engine Cleanliness score specified"); }
+        if(!req.body.bulk[obj].bfundercarriage) { errors.push("No Body Frame Undercarriage score specified"); }
+        if(!req.body.bulk[obj].bfsuspension) { errors.push("No Body Frame Suspension score specified"); }
+        if(!req.body.bulk[obj].bfchrome) { errors.push("No Body Frame Chrome score specified"); }
+        if(!req.body.bulk[obj].bfdetailing) { errors.push("No Body Frame Detailing score specified"); }
+        if(!req.body.bulk[obj].bfcleanliness) { errors.push("No Body Frame Cleanliness score specified"); }
+        if(!req.body.bulk[obj].modspaint) { errors.push("No Mods Paint score specified"); }
+        if(!req.body.bulk[obj].modsbody) { errors.push("No Mods Body score specified"); }
+        if(!req.body.bulk[obj].modswrap) { errors.push("No Mods Wrap score specified"); }
+        if(!req.body.bulk[obj].modsrims) { errors.push("No Mods Rims score specified"); }
+        if(!req.body.bulk[obj].modsinterior) { errors.push("No Mods Interior score specified"); }
+        if(!req.body.bulk[obj].modsother) { errors.push("No Mods Other score specified"); }
+        if(!req.body.bulk[obj].modsice) { errors.push("No Mods ICE score specified"); }
+        if(!req.body.bulk[obj].modsaftermarket) { errors.push("No Mods Aftermarket score specified"); }
+        if(!req.body.bulk[obj].modswip) { errors.push("No Mods WIP score specified"); }
+        if(!req.body.bulk[obj].modsoverall) { errors.push("No Mods Overall specified"); }
+
+        // indicate any errors
+        if(errors.length) {
+            res.status(400).json({"error": errors.join(",")});
             return;
         }
 
-        // successful execution
-        res.json({
-            "message": "success",
-            "data": data,
-            "id": this.lastID
-        })
-    });
-});
+        // increment the counter of the number of objects to insert
+        numObjsToInsert++;
 
-// endpoint to add a new owner
-app.post("/api/owners/", (req, res, next) => {
+        // push each object that was passed in to the params array
+        params.push(req.body.bulk[obj].carid, req.body.bulk[obj].year, req.body.bulk[obj].make, req.body.bulk[obj].model, req.body.bulk[obj].racerturbo, req.body.bulk[obj].racersupercharged, req.body.bulk[obj].racerperformance, req.body.bulk[obj].racerhorsepower, req.body.bulk[obj].caroverall, req.body.bulk[obj].enginemodifications, req.body.bulk[obj].engineperformance, req.body.bulk[obj].enginechrome, req.body.bulk[obj].enginedetailing, req.body.bulk[obj].enginecleanliness, req.body.bulk[obj].bfundercarriage, req.body.bulk[obj].bfsuspension, req.body.bulk[obj].bfchrome, req.body.bulk[obj].bfdetailing, req.body.bulk[obj].bfcleanliness, req.body.bulk[obj].modspaint, req.body.bulk[obj].modsbody, req.body.bulk[obj].modswrap, req.body.bulk[obj].modsrims, req.body.bulk[obj].modsinterior, req.body.bulk[obj].modsother, req.body.bulk[obj].modsice, req.body.bulk[obj].modsaftermarket, req.body.bulk[obj].modswip, req.body.bulk[obj].modsoverall)
 
-    // create an array of potential errors
-    var errors = []
-    if(!req.body.carid) { errors.push("No Car ID specified"); }
-    if(!req.body.name) { errors.push("No Name specified"); }
-    if(!req.body.email) { errors.push("No Email specified"); }
-
-    // indicate any errors
-    if(errors.length) {
-        res.status(400).json({"error": errors.join(",")});
-        return;
     }
 
-    // create a data object
-    var data = {
-        carid: req.body.carid,
-        name: req.body.name,
-        email: req.body.email
-    }
-
-    // initialize the sql command and the parameter array
-    var sql = 'INSERT INTO Owners (Car_ID, Name, Email) VALUES (?, ?, ?)'
-    var params = [data.carid, data.name, data.email]
-   
+    // modify the sql command to allow for the number of objects that were passed in
+    for(var i=0; i<numObjsToInsert-1; i++) {
+        sql += ", (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+    }    
+    
     db.run(sql, params, function(err, result) {
 
         // error checking
@@ -264,10 +205,65 @@ app.post("/api/owners/", (req, res, next) => {
         // successful execution
         res.json({
             "message": "success",
-            "data": data,
+            "data": params,
             "id": this.lastID
         })
     });
+});
+
+// endpoint to add a new owner/new owners
+// multiple owners can be added as JSON objects
+app.post("/api/owners/", (req, res, next) => {
+
+        // initialize the sql command, the parameter array, and a counter for the number of objects to insert 
+        var sql = "INSERT INTO Owners (Car_ID, Name, Email) VALUES (?, ?, ?)"
+        params = [];
+        let numObjsToInsert = 0;
+
+        // loop through the request body that was passed in
+        for(var obj in req.body.bulk) {
+
+            // create an array of potential errors
+            var errors = []
+            if(!req.body.bulk[obj].carid) { errors.push("No Car ID specified"); }
+            if(!req.body.bulk[obj].name) { errors.push("No Name specified"); }
+            if(!req.body.bulk[obj].email) { errors.push("No Email specified"); }
+
+            // indicate any errors
+            if(errors.length) {
+                res.status(400).json({"error": errors.join(",")});
+                return;
+            }
+
+            // increment the counter of the number of objects to insert
+            numObjsToInsert++;
+
+            // push each object that was passed in to the params array
+            params.push(req.body.bulk[obj].carid, req.body.bulk[obj].name, req.body.bulk[obj].email)
+        
+        }
+
+        // modify the sql command to allow for the number of objects that were passed in
+        for(var i=0; i<numObjsToInsert-1; i++) {
+            sql += ", (?, ?, ?)"
+        }
+
+        db.run(sql, params, function(err, result) {
+
+            // error checking
+            if(err) {
+                res.status(400).json({"error": err.message})
+                return;
+            }
+
+            // successful execution
+            res.json({
+                 "message": "success",
+                 "data": params,
+                 "id": this.lastID
+            })
+
+        });
 });
 
 // endpoint to update a car
