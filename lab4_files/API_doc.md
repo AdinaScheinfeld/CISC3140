@@ -53,7 +53,7 @@ Endpoint to get a list of the cars in the database along with information about 
 
 ### Sample request to get some cars in the database with certain specifications
 
-Get cars with year = 2001 and make = Nissan
+Get cars with year = 2001 and make = Nissan.
 
 ![GET request for Cars data with year = 2001 and make = Nissan](./images/3-get-cars-request-with-queries.png)
 
@@ -207,7 +207,7 @@ Endpoint to add a new owner/new owners to the database.
 
 ### Sample request to post a single owner to the database
 
-Post an owner with name John and car with car ID 1234 to the database.
+Post an owner with name John who owns a car with ID 1234 to the database.
 
 ![POST request for a single owner](./images/17-post-single-owner-request.png)
 
@@ -217,7 +217,7 @@ Post an owner with name John and car with car ID 1234 to the database.
 
 ### Sample request to post multiple owners to the database
 
-Post owners with names John, Jack, and Jim, with cars with IDs 1234, 5678, and 9090 to the database.
+Post owners with names John, Jack, and Jim, who own cars with IDs 1234, 5678, and 9090, respectively, to the database.
 
 ![POST request for multiple owners](./images/19-post-multiple-owners-request.png)
 
