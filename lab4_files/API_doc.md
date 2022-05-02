@@ -44,19 +44,19 @@ Endpoint to get a list of the cars in the database along with information about 
 
 ### Sample request to get all cars in the database
 
-![GET request for Cars data with no query string parameters](./images/1-get_cars_request_no_queries.png)
+![GET request for Cars data with no query string parameters](./images/1-get-cars-request-no-queries.png)
 
 ### Partial sample response of all cars in the database
 
-![GET response for Cars data with no query string parameters](./images/2-get_cars_response_no_queries.png)
+![GET response for Cars data with no query string parameters](./images/2-get-cars-response-no-queries.png)
 
 ### Sample request to get cars in the the databse with year = 2001 and make = Nissan
 
-![GET request for Cars data with year = 2001 and make = Nissan](./images/3-get_cars_request_with_queries.png)
+![GET request for Cars data with year = 2001 and make = Nissan](./images/3-get-cars-request-with-queries.png)
 
 ### Sample response of cars in the database with year = 2001 and make = Nissan
 
-![GET response for Cars data with year = 2001 and make = Nissan](./images/4-get_cars_response_with_queries.png)
+![GET response for Cars data with year = 2001 and make = Nissan](./images/4-get-cars-response-with-queries.png)
 
 `GET /api/owners`
 
@@ -70,19 +70,19 @@ Endpoint to get a list of the owners in the database along with the car ID of th
 
 ### Sample request to get all owners in the database
 
-![GET request for Owners data with no query string parameters](./images/5-get_owners_request_no_queries.png)
+![GET request for Owners data with no query string parameters](./images/5-get-owners-request-no-queries.png)
 
 ### Partial sample response of all owners in the database
 
-![GET response for Owners data with no query string parameters](./images/6-get_owners_response_no_queries.png)
+![GET response for Owners data with no query string parameters](./images/6-get-owners-response-no-queries.png)
 
 ### Sample request to get owners in the the databse with name = Asher
 
-![GET request for Owners data with name = Asher](./images/7-get_owners_request_with_queries.png)
+![GET request for Owners data with name = Asher](./images/7-get-owners-request-with-queries.png)
 
 ### Sample response of cars in the database with name = Asher
 
-![GET response for Owners data with name = Asher](./images/8-get_owners_request_with_queries.png)
+![GET response for Owners data with name = Asher](./images/8-get-owners-request-with-queries.png)
 
 `GET /api/cars/{carid}`
 
@@ -101,6 +101,20 @@ Endpoint to get a sinlge car in the database along with information about that c
 ![GET response for a single car in the database](./images/10-get-single-car-response.png)
 
 `GET /api/owners/{name}`
+
+Endpoint to get a sinlge owner in the database along with the owner's name, email address, and the ID of their car.
+
+| Path parameter | Description |
+| -------------- | ----------- |
+| {name} | Name of car's owner |
+
+### Sample request to get a single owner in the database by name
+
+![GET request for a single owner in the database](./images/11-get-sinlge-owner-request.png)
+
+### Sample response of a single owner in the database by name
+
+![GET response for a single owner in the database](./images/12-get-single-owner-response.png)
 
 `POST /api/cars/`
 
