@@ -9,7 +9,7 @@ This project is a backend API built using a combination of SQL and JavaScript th
 ## Dependencies
 
 * SQLite3
-* Node
+* NodeJS
 * Express
 
 ## Report Contents
@@ -20,15 +20,15 @@ This project is a backend API built using a combination of SQL and JavaScript th
 
 ### Source code
 
-- [create_database.js](./create_database.sql): 
+- [create_database.sql](./create_database.sql): SQLite script that creates the required database with the specified tables.
 
-- [database.js](./database.js):
+- [database.js](./database.js): JavaScript code that connects to the SQLite3 database that is created in [create_database.sql](./create_database.sql) and exports the database from the module. 
 
-- [server.js](./server.js): 
+- [server.js](./server.js): JavaScript code that creates routes to GET data from the database, POST data to the database, and PATCH data already in the database. The endpoints support viewing data that is in the database as JSON formatted data (which includes viewing all data, viewing data in specific classes, and viewing specific records), inserting new data records (which includes inserting one records at a time and inserting multiple records at once), and updating data records (which includes updating one record at a time and across multiple records).
 
 ### Documentation
 
-- [API_doc.md](./API_doc.md): 
+- [API_doc.md](./API_doc.md): A file containing a description of each endpoint provided by the API. 
 
 ## Getting Started
 
