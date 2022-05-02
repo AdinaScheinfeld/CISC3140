@@ -51,11 +51,13 @@ Endpoint to get a list of the cars in the database along with information about 
 
 ![GET response for Cars data with no query string parameters](./images/2-get-cars-response-no-queries.png)
 
-### Sample request to get cars in the the databse with year = 2001 and make = Nissan
+### Sample request to get some cars in the database with certain specifications
+
+Get cars with year = 2001 and make = Nissan
 
 ![GET request for Cars data with year = 2001 and make = Nissan](./images/3-get-cars-request-with-queries.png)
 
-### Sample response of cars in the database with year = 2001 and make = Nissan
+### Sample response of cars in the database with certain specifications
 
 ![GET response for Cars data with year = 2001 and make = Nissan](./images/4-get-cars-response-with-queries.png)
 
@@ -78,11 +80,13 @@ Endpoint to get a list of the owners in the database along with the car ID of th
 
 ![GET response for Owners data with no query string parameters](./images/6-get-owners-response-no-queries.png)
 
-### Sample request to get owners in the the databse with name = Asher
+### Sample request to get owners in the the databse with certain specifications
+
+Get owners in the database with name = Asher.
 
 ![GET request for Owners data with name = Asher](./images/7-get-owners-request-with-queries.png)
 
-### Sample response of cars in the database with name = Asher
+### Sample response of cars in the database with certain specifications
 
 ![GET response for Owners data with name = Asher](./images/8-get-owners-request-with-queries.png)
 
@@ -96,6 +100,8 @@ Endpoint to get a sinlge car in the database along with information about that c
 | {carid} | Unique ID of the car being looked up |
 
 ### Sample request to get a single car in the database by ID
+
+Get car with ID 218. 
 
 ![GET request for a single car in the database](./images/9-get-single-car-request.png)
 
@@ -113,6 +119,8 @@ Endpoint to get a sinlge owner in the database along with the owner's name, emai
 | {name} | Name of car's owner |
 
 ### Sample request to get a single owner in the database by name
+
+Get owner with name Ted. 
 
 ![GET request for a single owner in the database](./images/11-get-sinlge-owner-request.png)
 
@@ -164,19 +172,21 @@ Endpoint to add a new car/new cars to the database.
 
 ### Sample request to post a single car to the database
 
-![POST request for a single car](HERE)
+// Up to here
 
-### Partial sample response from posting a single car to the database
+![POST request for a single car](./images/13-post-single-car-request.png)
 
-![POST response from a single car](HERE)
+### Sample response from posting a single car to the database
 
-### Sample request to post multiple cars to the database
+![POST response from a single car](./images/14-post-single-car-response.png)
 
-![POST request for multiple cars](HERE)
+### Partial sample request to post multiple cars to the database
+
+![POST request for multiple cars](./images/15-post-multiple-cars-request.png)
 
 ### Partial sample response from posting multiple cars to the database
 
-![POST response from multiple cars](HERE)
+![POST response from multiple cars](./images/16-post-multiple-cars-response.png)
 
 `POST /api/owners/`
 --------------------------------------------------------------
@@ -195,19 +205,19 @@ Endpoint to add a new owner/new owners to the database.
 
 ### Sample request to post a single owner to the database
 
-![POST request for a single owner](HERE)
+![POST request for a single owner](./images/17-post-single-owner-request.png)
 
 ### Partial sample response from posting a single owner to the database
 
-![POST response from a single owner](HERE)
+![POST response from a single owner](./images/18-post-single-owner-response.png)
 
 ### Sample request to post multiple owners to the database
 
-![POST request for multiple owners](HERE)
+![POST request for multiple owners](./images/19-post-multiple-owners-request.png)
 
 ### Partial sample response from posting multiple owners to the database
 
-![POST response from multiple owners](HERE)
+![POST response from multiple owners](./images/20-post-multiple-owners-response.png)
 
 `PATCH /api/cars/`
 --------------------------------------------------------------
@@ -278,21 +288,15 @@ Endpoint to update a single car or multiple cars already in the database. The bo
 | modswip2 | Optional | Score for the car's WIP mods | INT |
 | modsoverall2 | Optional | Score for the car's overall mods | INT |
 
-### Sample request to update a single car in the database
-
-![PATCH request for a single car](HERE)
-
-### Partial sample response from updating a single car in the database
-
-![PATCH response from a single car](HERE)
-
 ### Sample request to update multiple cars in the database
 
-![PATCH request for multiple cars](HERE)
+Updates all Acuras to Tesla Model X
 
-### Partial sample response from updating multiple cars in the database
+![PATCH request for multiple cars](./images/21-patch-multiple-cars-request.png)
 
-![PATCH response from multiple cars](HERE)
+### Sample response from updating multiple cars in the database
+
+![PATCH response from multiple cars](./images/22-patch-multiple-cars-response.png)
 
 `PATCH /api/cars/{carid}`
 --------------------------------------------------------------
@@ -333,11 +337,13 @@ Endpoint to update a single car in the database by carid.
 
 ### Sample request to update a single car in the database by car ID
 
-![PATCH request for a single car](HERE)
+Update the racer turbo score, the racer supercharged score, the racer performance score, and the racer horsepower score for the car with ID 167 each to 100.
 
-### Partial sample response from updating a single car in the database by car ID 
+![PATCH request for a single car](./images/23-patch-single-car-request.png)
 
-![PATCH response from a single car](HERE)
+### Sample response from updating a single car in the database by car ID 
+
+![PATCH response from a single car](./images/24-patch-single-car-response.png)
 
 `PATCH /api/owners/`
 --------------------------------------------------------------
@@ -356,21 +362,15 @@ Endpoint to update a single owner or multiple owners already in the database. Th
 | name2 | Optional | Name of car's owner | TEXT |
 | email2 | Optional | Email address of car's owner | TEXT |
 
-### Sample request to update a single owner in the database
-
-![PATCH request for a single owner](HERE)
-
-### Partial sample response from updating a single owner in the database
-
-![PATCH response from a single owner](HERE)
-
 ### Sample request to update multiple owners in the database
 
-![PATCH request for multiple owners](HERE)
+Update the names of all owners named John to Johnny. 
+
+![PATCH request for multiple owners](./images/25-patch-multiple-owners-request.png)
 
 ### Partial sample response from updating multiple owners in the database
 
-![PATCH response from multiple owners](HERE)
+![PATCH response from multiple owners](./images/26-patch-multiple-owners-response.png)
 
 `PATCH /api/owners/{carid}`
 --------------------------------------------------------------
@@ -385,9 +385,11 @@ Endpoint to update a single car in the database by carid.
 
 ### Sample request to update a single owner in the database
 
-![PATCH request for a single owner](HERE)
+Update the email address of the owner of the car with ID 68 to Scot123@gmail.com.
+
+![PATCH request for a single owner](./images/27-patch-single-owner-request.png)
 
 ### Partial sample response from updating a single owner in the database
 
-![PATCH response from a single owner](HERE)
+![PATCH response from a single owner](./images/28-patch-single-owner-response.png)
 
