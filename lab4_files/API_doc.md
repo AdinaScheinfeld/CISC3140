@@ -62,6 +62,8 @@ Endpoint to get a list of the cars in the database along with information about 
 
 `GET /api/owners`
 
+--------------------------------------------------------------
+
 Endpoint to get a list of the owners in the database along with the car ID of the owner's car, the owner's name, and the owner's email address. The query string parameters listed below allow for the filtering of the data and the return of records that meet certain specifications. 
 
 | Query string parameter | Required/optional | Description | Type |
