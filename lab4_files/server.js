@@ -158,35 +158,35 @@ app.post("/api/cars/", (req, res, next) => {
 
         // create an array of potential errors
         var errors = []
-        if(!req.body.bulk[obj].carid) { errors.push("No Car ID specified"); }
-        if(!req.body.bulk[obj].year) { errors.push("No Year specified"); }
+        if(!req.body.bulk[obj].carid && req.body.bulk[obj].carid != 0) { errors.push("No Car ID specified"); }
+        if(!req.body.bulk[obj].year && req.body.bulk[obj].year != 0) { errors.push("No Year specified"); }
         if(!req.body.bulk[obj].make) { errors.push("No Make specified"); }
         if(!req.body.bulk[obj].model) { errors.push("No Model specified"); }
-        if(!req.body.bulk[obj].racerturbo) { errors.push("No Racer Turbo score specified"); }
-        if(!req.body.bulk[obj].racersupercharged) { errors.push("No Racer Supercharged score specified"); }
-        if(!req.body.bulk[obj].racerperformance) { errors.push("No Racer Performance score specified"); }
-        if(!req.body.bulk[obj].racerhorsepower) { errors.push("No Racer Horsepower score specified"); }
-        if(!req.body.bulk[obj].caroverall) { errors.push("No Car Overall score specified"); }
-        if(!req.body.bulk[obj].enginemodifications) { errors.push("No Engine Modifications score specified"); }
-        if(!req.body.bulk[obj].engineperformance) { errors.push("No Engine Performance score specified"); }
-        if(!req.body.bulk[obj].enginechrome) { errors.push("No Engine Chrome score specified"); }
-        if(!req.body.bulk[obj].enginedetailing) { errors.push("No Engine Detailing score specified"); }
-        if(!req.body.bulk[obj].enginecleanliness) { errors.push("No Engine Cleanliness score specified"); }
-        if(!req.body.bulk[obj].bfundercarriage) { errors.push("No Body Frame Undercarriage score specified"); }
-        if(!req.body.bulk[obj].bfsuspension) { errors.push("No Body Frame Suspension score specified"); }
-        if(!req.body.bulk[obj].bfchrome) { errors.push("No Body Frame Chrome score specified"); }
-        if(!req.body.bulk[obj].bfdetailing) { errors.push("No Body Frame Detailing score specified"); }
-        if(!req.body.bulk[obj].bfcleanliness) { errors.push("No Body Frame Cleanliness score specified"); }
-        if(!req.body.bulk[obj].modspaint) { errors.push("No Mods Paint score specified"); }
-        if(!req.body.bulk[obj].modsbody) { errors.push("No Mods Body score specified"); }
-        if(!req.body.bulk[obj].modswrap) { errors.push("No Mods Wrap score specified"); }
-        if(!req.body.bulk[obj].modsrims) { errors.push("No Mods Rims score specified"); }
-        if(!req.body.bulk[obj].modsinterior) { errors.push("No Mods Interior score specified"); }
-        if(!req.body.bulk[obj].modsother) { errors.push("No Mods Other score specified"); }
-        if(!req.body.bulk[obj].modsice) { errors.push("No Mods ICE score specified"); }
-        if(!req.body.bulk[obj].modsaftermarket) { errors.push("No Mods Aftermarket score specified"); }
-        if(!req.body.bulk[obj].modswip) { errors.push("No Mods WIP score specified"); }
-        if(!req.body.bulk[obj].modsoverall) { errors.push("No Mods Overall specified"); }
+        if(!req.body.bulk[obj].racerturbo && req.body.bulk[obj].racerturbo != 0) { errors.push("No Racer Turbo score specified"); }
+        if(!req.body.bulk[obj].racersupercharged && req.body.bulk[obj].racersupercharged != 0) { errors.push("No Racer Supercharged score specified"); }
+        if(!req.body.bulk[obj].racerperformance && req.body.bulk[obj].racerperformance != 0) { errors.push("No Racer Performance score specified"); }
+        if(!req.body.bulk[obj].racerhorsepower && req.body.bulk[obj].racerhorsepower != 0) { errors.push("No Racer Horsepower score specified"); }
+        if(!req.body.bulk[obj].caroverall && req.body.bulk[obj].caroverall != 0) { errors.push("No Car Overall score specified"); }
+        if(!req.body.bulk[obj].enginemodifications && req.body.bulk[obj].enginemodifications != 0) { errors.push("No Engine Modifications score specified"); }
+        if(!req.body.bulk[obj].engineperformance && req.body.bulk[obj].engineperformance != 0) { errors.push("No Engine Performance score specified"); }
+        if(!req.body.bulk[obj].enginechrome && req.body.bulk[obj].enginechrome != 0) { errors.push("No Engine Chrome score specified"); }
+        if(!req.body.bulk[obj].enginedetailing && req.body.bulk[obj].enginedetailing != 0) { errors.push("No Engine Detailing score specified"); }
+        if(!req.body.bulk[obj].enginecleanliness && req.body.bulk[obj].enginecleanliness != 0) { errors.push("No Engine Cleanliness score specified"); }
+        if(!req.body.bulk[obj].bfundercarriage && req.body.bulk[obj].bfundercarriage != 0) { errors.push("No Body Frame Undercarriage score specified"); }
+        if(!req.body.bulk[obj].bfsuspension && req.body.bulk[obj].bfsuspension != 0) { errors.push("No Body Frame Suspension score specified"); }
+        if(!req.body.bulk[obj].bfchrome && req.body.bulk[obj].bfchrome != 0) { errors.push("No Body Frame Chrome score specified"); }
+        if(!req.body.bulk[obj].bfdetailing && req.body.bulk[obj].bfdetailing != 0) { errors.push("No Body Frame Detailing score specified"); }
+        if(!req.body.bulk[obj].bfcleanliness && req.body.bulk[obj].bfcleanliness != 0) { errors.push("No Body Frame Cleanliness score specified"); }
+        if(!req.body.bulk[obj].modspaint && req.body.bulk[obj].modspaint != 0) { errors.push("No Mods Paint score specified"); }
+        if(!req.body.bulk[obj].modsbody && req.body.bulk[obj].modsbody != 0) { errors.push("No Mods Body score specified"); }
+        if(!req.body.bulk[obj].modswrap && req.body.bulk[obj].modswrap != 0) { errors.push("No Mods Wrap score specified"); }
+        if(!req.body.bulk[obj].modsrims && req.body.bulk[obj].modsrims != 0) { errors.push("No Mods Rims score specified"); }
+        if(!req.body.bulk[obj].modsinterior && req.body.bulk[obj].modsinterior != 0) { errors.push("No Mods Interior score specified"); }
+        if(!req.body.bulk[obj].modsother && req.body.bulk[obj].modsother != 0) { errors.push("No Mods Other score specified"); }
+        if(!req.body.bulk[obj].modsice && req.body.bulk[obj].modsice != 0) { errors.push("No Mods ICE score specified"); }
+        if(!req.body.bulk[obj].modsaftermarket && req.body.bulk[obj].modsaftermarket != 0) { errors.push("No Mods Aftermarket score specified"); }
+        if(!req.body.bulk[obj].modswip && req.body.bulk[obj].modswip != 0) { errors.push("No Mods WIP score specified"); }
+        if(!req.body.bulk[obj].modsoverall && req.body.bulk[obj].modsoverall != 0) { errors.push("No Mods Overall specified"); }
 
         // indicate any errors
         if(errors.length) {
@@ -242,7 +242,7 @@ app.post("/api/owners/", (req, res, next) => {
 
             // create an array of potential errors
             var errors = []
-            if(!req.body.bulk[obj].carid) { errors.push("No Car ID specified"); }
+            if(!req.body.bulk[obj].carid && req.body.bulk[obj].carid != 0) { errors.push("No Car ID specified"); }
             if(!req.body.bulk[obj].name) { errors.push("No Name specified"); }
             if(!req.body.bulk[obj].email) { errors.push("No Email specified"); }
 
