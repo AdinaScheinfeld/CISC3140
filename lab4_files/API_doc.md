@@ -204,7 +204,7 @@ Endpoint to add a new owner/new owners to the database.
 
 `PATCH /api/cars/`
 
-Endpoint to update a single car or multiple cars already in the database. The body parameters are the one(s) being updated, and the query string parameters enable the filtering of the data in the database to allow for the updating of records that meet certain specifications. 
+Endpoint to update a single car or multiple cars already in the database. The body parameter(s) are the one(s) being updated, and the query string parameters enable the filtering of the data in the database to allow for only updating of records that meet certain specifications. 
 
 | Body parameter | Required/optional | Description | Type |
 | -------------- | ----------------- | ----------- | ---- |
@@ -286,11 +286,97 @@ Endpoint to update a single car or multiple cars already in the database. The bo
 
 ![PATCH response from multiple cars](HERE)
 
-// UP TO HERE
-
 `PATCH /api/cars/{carid}`
+
+Endpoint to update a single car in the database by carid. 
+
+| Body parameter | Required/optional | Description | Type |
+| -------------- | ----------------- | ----------- | ---- |
+| carid1 | Optional | Unique ID number identifying each car | INT |
+| year1 | Optional | The car's year | INT |
+| make1 | Optional | The car's make | TEXT |
+| model1 | Optional | The car's model | TEXT |
+| racerturbo1 | Optional | Score for the car's racer turbo | INT |
+| racersupercharged1 | Optional | Score for the car's racer supercharged | INT |
+| racerperformance1 | Optional | Score for the car's racer performance | INT |
+| racerhorsepower1 | Optional | Score for the car's racer horsepower | INT |
+| caroverall1 | Optional | Score for the car overall | INT |
+| enginemodifications1 | Optional | Score for the car's engine modifications | INT |
+| engineperformance1 | Optional | Score for the car's engine performance | INT |
+| enginechrome1 | Optional | Score for the car's engine chrome | INT |
+| enginedetailing1 | Optional | Score for the car's engine detailing | INT |
+| enginecleanliness1 | Optional | Score for the car's engine cleanliness | INT |
+| bfundercarriage1 | Optional | Score for the car's body frame undercarriage | INT |
+| bfsuspension1 | Optional | Score for the car's body frame suspension | INT |
+| bfchrome1 | Optional | Score for the car's body frame chrome | INT |
+| bfdetailing1 | Optional | Score for the car's body frame detailing | INT |
+| bfcleanliness1 | Optional | Score for the car's body frame cleanliness | INT |
+| modspaint1 | Optional | Score for the car's paint mods | INT |
+| modsbody1 | Optional | Score for the car's body mods | INT |
+| modswrap1 | Optional | Score for the car's wrap mods | INT |
+| modsrims1 | Optional | Score for the car's rims mods | INT |
+| modsinterior1 | Optional | Score for the car's interior mods | INT |
+| modsother1 | Optional | Score for the car's other mods | INT |
+| modsice1 | Optional | Score for the car's ICE mods | INT |
+| modsaftermarket1 | Optional | Score for the car's aftermarket mods | INT |
+| modswip1 | Optional | Score for the car's WIP mods | INT |
+| modsoverall1 | Optional | Score for the car's overall mods | INT |
+
+### Sample request to update a single car in the database by car ID
+
+![PATCH request for a single car](HERE)
+
+### Partial sample response from updating a single car in the database by car ID 
+
+![PATCH response from a single car](HERE)
 
 `PATCH /api/owners/`
 
+Endpoint to update a single owner or multiple owners already in the database. The body parameter(s) are the one(s) being updated, and the query string parameters enable the filtering of the data in the database to allow for only updating of records that meet certain specifications. 
+
+| Body parameter | Required/optional | Description | Type |
+| ---------------------- | ----------------- | ----------- | ---- |
+| carid1 | Optional | Unique ID number identifying each car | INT |
+| name1 | Optional | Name of car's owner | TEXT |
+| email1 | Optional | Email address of car's owner | TEXT |
+
+| Query string parameter | Required/optional | Description | Type |
+| ---------------------- | ----------------- | ----------- | ---- |
+| carid2 | Optional | Unique ID number identifying each car | INT |
+| name2 | Optional | Name of car's owner | TEXT |
+| email2 | Optional | Email address of car's owner | TEXT |
+
+### Sample request to update a single owner in the database
+
+![PATCH request for a single owner](HERE)
+
+### Partial sample response from updating a single owner in the database
+
+![PATCH response from a single owner](HERE)
+
+### Sample request to update multiple owners in the database
+
+![PATCH request for multiple owners](HERE)
+
+### Partial sample response from updating multiple owners in the database
+
+![PATCH response from multiple owners](HERE)
+
 `PATCH /api/owners/{carid}`
+
+Endpoint to update a single car in the database by carid. 
+
+| Body parameter | Required/optional | Description | Type |
+| ---------------------- | ----------------- | ----------- | ---- |
+| carid1 | Optional | Unique ID number identifying each car | INT |
+| name1 | Optional | Name of car's owner | TEXT |
+| email1 | Optional | Email address of car's owner | TEXT |
+
+### Sample request to update a single owner in the database
+
+![PATCH request for a single owner](HERE)
+
+### Partial sample response from updating a single owner in the database
+
+![PATCH response from a single owner](HERE)
 
