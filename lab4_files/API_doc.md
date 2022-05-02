@@ -6,7 +6,10 @@ This API enables the user to view data on cars in a database, add to the data in
 
 ### Endpoints and Methods
 
+--------------------------------------------------------------
+
 `GET /api/cars`
+--------------------------------------------------------------
 
 Endpoint to get a list of the cars in the database along with information about each car. The query string parameters listed below allow for the filtering of the data and the return of records that meet certain specifications. 
 
