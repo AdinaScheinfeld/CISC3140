@@ -172,7 +172,7 @@ Endpoint to add a new car/new cars to the database.
 
 ### Sample request to post a single car to the database
 
-// Up to here
+Post a car with ID 1234 to the database. 
 
 ![POST request for a single car](./images/13-post-single-car-request.png)
 
@@ -181,6 +181,8 @@ Endpoint to add a new car/new cars to the database.
 ![POST response from a single car](./images/14-post-single-car-response.png)
 
 ### Partial sample request to post multiple cars to the database
+
+Post cars with IDs 1234 and 5678 to the database.
 
 ![POST request for multiple cars](./images/15-post-multiple-cars-request.png)
 
@@ -205,6 +207,8 @@ Endpoint to add a new owner/new owners to the database.
 
 ### Sample request to post a single owner to the database
 
+Post an owner with name John and car with car ID 1234 to the database.
+
 ![POST request for a single owner](./images/17-post-single-owner-request.png)
 
 ### Partial sample response from posting a single owner to the database
@@ -212,6 +216,8 @@ Endpoint to add a new owner/new owners to the database.
 ![POST response from a single owner](./images/18-post-single-owner-response.png)
 
 ### Sample request to post multiple owners to the database
+
+Post owners with names John, Jack, and Jim, with cars with IDs 1234, 5678, and 9090 to the database.
 
 ![POST request for multiple owners](./images/19-post-multiple-owners-request.png)
 
@@ -290,7 +296,7 @@ Endpoint to update a single car or multiple cars already in the database. The bo
 
 ### Sample request to update multiple cars in the database
 
-Updates all Acuras to Tesla Model X
+Updates all Acuras to Tesla Model X.
 
 ![PATCH request for multiple cars](./images/21-patch-multiple-cars-request.png)
 
@@ -301,7 +307,7 @@ Updates all Acuras to Tesla Model X
 `PATCH /api/cars/{carid}`
 --------------------------------------------------------------
 
-Endpoint to update a single car in the database by carid. 
+Endpoint to update a single car in the database by Car ID. 
 
 | Body parameter | Required/optional | Description | Type |
 | -------------- | ----------------- | ----------- | ---- |
@@ -375,7 +381,7 @@ Update the names of all owners named John to Johnny.
 `PATCH /api/owners/{carid}`
 --------------------------------------------------------------
 
-Endpoint to update a single car in the database by carid. 
+Endpoint to update a single car in the database by Car ID. 
 
 | Body parameter | Required/optional | Description | Type |
 | ---------------------- | ----------------- | ----------- | ---- |
