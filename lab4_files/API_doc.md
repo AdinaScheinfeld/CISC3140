@@ -8,7 +8,7 @@ This API enables the user to view data on cars in a database, add to the data in
 
 `GET /api/cars`
 
-Endpoint to get a list of the cars in the database. The query string parameters listed below allow for the filtering of the data and the return of records that meet certain specifications. 
+Endpoint to get a list of the cars in the database along with information about each car. The query string parameters listed below allow for the filtering of the data and the return of records that meet certain specifications. 
 
 | Query string parameter | Required/optional | Description | Type |
 | ---------------------- | ----------------- | ----------- | ---- |
@@ -42,13 +42,13 @@ Endpoint to get a list of the cars in the database. The query string parameters 
 | modswip | Optional | Score for the car's WIP mods | INT |
 | modsoverall | Optional | Score for the car's overall mods | INT | 
 
-#### Sample request to get all cars in the database
+### Sample request to get all cars in the database
 
 ![GET request for Cars data with no query string parameters](./images/1-get_cars_request_no_queries.png)
 
 ### Partial sample response of all cars in the database
 
-![GET response for Cars data with no query string parameters](./images//2-get_cars_response_no_queries.png)
+![GET response for Cars data with no query string parameters](./images/2-get_cars_response_no_queries.png)
 
 ### Sample request to get cars in the the databse with year = 2001 and make = Nissan
 
@@ -59,6 +59,30 @@ Endpoint to get a list of the cars in the database. The query string parameters 
 ![GET response for Cars data with year = 2001 and make = Nissan](./images/4-get_cars_response_with_queries.png)
 
 `GET /api/owners`
+
+Endpoint to get a list of the owners in the database along with the car ID of the owner's car, the owner's name, and the owner's email address. The query string parameters listed below allow for the filtering of the data and the return of records that meet certain specifications. 
+
+| Query string parameter | Required/optional | Description | Type |
+| ---------------------- | ----------------- | ----------- | ---- |
+| carid | Optional | Unique ID number identifying each car | INT |
+| name | Optional | Name of car's owner | TEXT |
+| email | Optional | Email address of car's owner | TEXT |
+
+### Sample request to get all owners in the database
+
+![GET request for Owners data with no query string parameters](./images/5-get_owners_request_no_queries.png)
+
+### Partial sample response of all owners in the database
+
+![GET response for Owners data with no query string parameters](./images/6-get_owners_response_no_queries.png)
+
+### Sample request to get owners in the the databse with name = Asher
+
+![GET request for Owners data with name = Asher](./images/7-get_owners_request_with_queries.png)
+
+### Sample response of cars in the database with name = Asher
+
+![GET response for Owners data with name = Asher](./images/8-get_owners_request_with_queries.png)
 
 `GET /api/cars/{carid}`
 
