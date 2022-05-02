@@ -6,8 +6,6 @@ This API enables the user to view data on cars in a database, add to the data in
 
 ### Endpoints and Methods
 
---------------------------------------------------------------
-
 `GET /api/cars`
 --------------------------------------------------------------
 
@@ -61,10 +59,7 @@ Endpoint to get a list of the cars in the database along with information about 
 
 ![GET response for Cars data with year = 2001 and make = Nissan](./images/4-get-cars-response-with-queries.png)
 
---------------------------------------------------------------
-
 `GET /api/owners`
-
 --------------------------------------------------------------
 
 Endpoint to get a list of the owners in the database along with the car ID of the owner's car, the owner's name, and the owner's email address. The query string parameters listed below allow for the filtering of the data and the return of records that meet certain specifications. 
@@ -92,6 +87,7 @@ Endpoint to get a list of the owners in the database along with the car ID of th
 ![GET response for Owners data with name = Asher](./images/8-get-owners-request-with-queries.png)
 
 `GET /api/cars/{carid}`
+--------------------------------------------------------------
 
 Endpoint to get a sinlge car in the database along with information about that car.
 
@@ -108,6 +104,7 @@ Endpoint to get a sinlge car in the database along with information about that c
 ![GET response for a single car in the database](./images/10-get-single-car-response.png)
 
 `GET /api/owners/{name}`
+--------------------------------------------------------------
 
 Endpoint to get a sinlge owner in the database along with the owner's name, email address, and the ID of their car.
 
@@ -124,6 +121,8 @@ Endpoint to get a sinlge owner in the database along with the owner's name, emai
 ![GET response for a single owner in the database](./images/12-get-single-owner-response.png)
 
 `POST /api/cars/`
+--------------------------------------------------------------
+
 
 Endpoint to add a new car/new cars to the database.
 
@@ -180,6 +179,7 @@ Endpoint to add a new car/new cars to the database.
 ![POST response from multiple cars](HERE)
 
 `POST /api/owners/`
+--------------------------------------------------------------
 
 Endpoint to add a new owner/new owners to the database.
 
@@ -210,6 +210,7 @@ Endpoint to add a new owner/new owners to the database.
 ![POST response from multiple owners](HERE)
 
 `PATCH /api/cars/`
+--------------------------------------------------------------
 
 Endpoint to update a single car or multiple cars already in the database. The body parameter(s) are the one(s) being updated, and the query string parameters enable the filtering of the data in the database to allow for only updating of records that meet certain specifications. 
 
@@ -294,6 +295,7 @@ Endpoint to update a single car or multiple cars already in the database. The bo
 ![PATCH response from multiple cars](HERE)
 
 `PATCH /api/cars/{carid}`
+--------------------------------------------------------------
 
 Endpoint to update a single car in the database by carid. 
 
@@ -338,6 +340,7 @@ Endpoint to update a single car in the database by carid.
 ![PATCH response from a single car](HERE)
 
 `PATCH /api/owners/`
+--------------------------------------------------------------
 
 Endpoint to update a single owner or multiple owners already in the database. The body parameter(s) are the one(s) being updated, and the query string parameters enable the filtering of the data in the database to allow for only updating of records that meet certain specifications. 
 
@@ -370,6 +373,7 @@ Endpoint to update a single owner or multiple owners already in the database. Th
 ![PATCH response from multiple owners](HERE)
 
 `PATCH /api/owners/{carid}`
+--------------------------------------------------------------
 
 Endpoint to update a single car in the database by carid. 
 
