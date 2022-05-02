@@ -39,8 +39,16 @@ app.get("/api/cars", (req, res, next) => {
 
     // initialize the sql command and the parameter array
     // COALESCE allows the user to specify some field values but not others
-    var sql = "SELECT * FROM Cars WHERE Car_ID = COALESCE(?, Car_ID) AND Year = COALESCE(?, Year) AND Make = COALESCE(?, Make) AND Model = COALESCE(?, Model) AND Racer_Turbo = COALESCE(?, Racer_Turbo) AND Racer_Supercharged = COALESCE(?, Racer_Supercharged) AND Racer_Performance = COALESCE(?, Racer_Performance) AND Racer_Horsepower = COALESCE(?, Racer_Horsepower) AND Car_Overall = COALESCE(?, Car_Overall) AND Engine_Modifications = COALESCE(?, Engine_Modifications) AND Engine_Performance = COALESCE(?, Engine_Performance) AND Engine_Chrome = COALESCE(?, Engine_Chrome) AND Engine_Detailing = COALESCE(?, Engine_Detailing) AND Engine_Cleanliness = COALESCE(?, Engine_Cleanliness) AND Body_Frame_Undercarriage = COALESCE(?, Body_Frame_Undercarriage) AND Body_Frame_Suspension = COALESCE(?, Body_Frame_Suspension) AND Body_Frame_Chrome = COALESCE(?, Body_Frame_Chrome) AND Body_Frame_Detailing = COALESCE(?, Body_Frame_Detailing) AND Body_Frame_Cleanliness = COALESCE(?, Body_Frame_Cleanliness) AND Mods_Paint = COALESCE(?, Mods_Paint) AND Mods_Body = COALESCE(?, Mods_Body) AND Mods_Wrap = COALESCE(?, Mods_Wrap) AND Mods_Rims = COALESCE(?, Mods_Rims) AND Mods_Interior = COALESCE(?, Mods_Interior) AND Mods_Other = COALESCE(?, Mods_Other) AND Mods_ICE = COALESCE(?, Mods_ICE) AND Mods_Aftermarket = COALESCE(?, Mods_Aftermarket) AND Mods_WIP = COALESCE(?, Mods_WIP) AND Mods_Overall = COALESCE(?, Mods_Overall)"
-    var params = [req.query.carid, req.query.year, req.query.make, req.query.model, req.query.racerturbo, req.query.racersupercharged, req.query.racerperformance, req.query.racerhorsepower, req.query.caroverall, req.query.enginemodifications, req.query.engineperformance, req.query.enginechrome, req.query.enginedetailing, req.query.enginecleanliness, req.query.bfundercarriage, req.query.bfsuspension, req.query.bfchrome, req.query.bfdetailing, req.query.bfcleanliness, req.query.modspaint, req.query.modsbody, req.query.modswrap, req.query.modsrims, req.query.modsinterior, req.query.modsother, req.query.modsice, req.query.modsaftermarket, req.query.modswip, req.query.modsoverall]
+    var sql = `SELECT * FROM Cars WHERE Car_ID = COALESCE(?, Car_ID) AND Year = COALESCE(?, Year) AND Make = COALESCE(?, Make) AND Model = COALESCE(?, Model) AND 
+    Racer_Turbo = COALESCE(?, Racer_Turbo) AND Racer_Supercharged = COALESCE(?, Racer_Supercharged) AND Racer_Performance = COALESCE(?, Racer_Performance) AND Racer_Horsepower = COALESCE(?, Racer_Horsepower) AND 
+    Car_Overall = COALESCE(?, Car_Overall) AND Engine_Modifications = COALESCE(?, Engine_Modifications) AND Engine_Performance = COALESCE(?, Engine_Performance) AND Engine_Chrome = COALESCE(?, Engine_Chrome) AND Engine_Detailing = COALESCE(?, Engine_Detailing) AND Engine_Cleanliness = COALESCE(?, Engine_Cleanliness) AND 
+    Body_Frame_Undercarriage = COALESCE(?, Body_Frame_Undercarriage) AND Body_Frame_Suspension = COALESCE(?, Body_Frame_Suspension) AND Body_Frame_Chrome = COALESCE(?, Body_Frame_Chrome) AND Body_Frame_Detailing = COALESCE(?, Body_Frame_Detailing) AND Body_Frame_Cleanliness = COALESCE(?, Body_Frame_Cleanliness) AND 
+    Mods_Paint = COALESCE(?, Mods_Paint) AND Mods_Body = COALESCE(?, Mods_Body) AND Mods_Wrap = COALESCE(?, Mods_Wrap) AND Mods_Rims = COALESCE(?, Mods_Rims) AND Mods_Interior = COALESCE(?, Mods_Interior) AND Mods_Other = COALESCE(?, Mods_Other) AND Mods_ICE = COALESCE(?, Mods_ICE) AND Mods_Aftermarket = COALESCE(?, Mods_Aftermarket) AND Mods_WIP = COALESCE(?, Mods_WIP) AND Mods_Overall = COALESCE(?, Mods_Overall)`
+    var params = [req.query.carid, req.query.year, req.query.make, req.query.model, 
+        req.query.racerturbo, req.query.racersupercharged, req.query.racerperformance, req.query.racerhorsepower, 
+        req.query.caroverall, req.query.enginemodifications, req.query.engineperformance, req.query.enginechrome, req.query.enginedetailing, req.query.enginecleanliness, 
+        req.query.bfundercarriage, req.query.bfsuspension, req.query.bfchrome, req.query.bfdetailing, req.query.bfcleanliness, 
+        req.query.modspaint, req.query.modsbody, req.query.modswrap, req.query.modsrims, req.query.modsinterior, req.query.modsother, req.query.modsice, req.query.modsaftermarket, req.query.modswip, req.query.modsoverall]
 
     db.all(sql, params, (err, rows) => {
 
@@ -136,7 +144,8 @@ app.get("/api/owners/:name", (req, res, next) => {
 app.post("/api/cars/", (req, res, next) => {
 
     // initialize the sql command, the parameter array, and a coutner fo rhte number of objects to insert
-    var sql = 'INSERT INTO Cars (Car_ID, Year, Make, Model, Racer_Turbo, Racer_Supercharged, Racer_Performance, Racer_Horsepower, Car_Overall, Engine_Modifications, Engine_Performance, Engine_Chrome, Engine_Detailing, Engine_Cleanliness, Body_Frame_Undercarriage, Body_Frame_Suspension, Body_Frame_Chrome, Body_Frame_Detailing, Body_Frame_Cleanliness, Mods_Paint, Mods_Body, Mods_Wrap, Mods_Rims, Mods_Interior, Mods_Other, Mods_ICE, Mods_Aftermarket, Mods_WIP, Mods_Overall) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'
+    var sql = `INSERT INTO Cars (Car_ID, Year, Make, Model, Racer_Turbo, Racer_Supercharged, Racer_Performance, Racer_Horsepower, Car_Overall, Engine_Modifications, Engine_Performance, Engine_Chrome, Engine_Detailing, Engine_Cleanliness, Body_Frame_Undercarriage, Body_Frame_Suspension, Body_Frame_Chrome, Body_Frame_Detailing, Body_Frame_Cleanliness, Mods_Paint, Mods_Body, Mods_Wrap, Mods_Rims, Mods_Interior, Mods_Other, Mods_ICE, Mods_Aftermarket, Mods_WIP, Mods_Overall) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
     var params = []
     let numObjsToInsert = 0;
 
@@ -185,7 +194,11 @@ app.post("/api/cars/", (req, res, next) => {
         numObjsToInsert++;
 
         // push each object that was passed in to the params array
-        params.push(req.body.bulk[obj].carid, req.body.bulk[obj].year, req.body.bulk[obj].make, req.body.bulk[obj].model, req.body.bulk[obj].racerturbo, req.body.bulk[obj].racersupercharged, req.body.bulk[obj].racerperformance, req.body.bulk[obj].racerhorsepower, req.body.bulk[obj].caroverall, req.body.bulk[obj].enginemodifications, req.body.bulk[obj].engineperformance, req.body.bulk[obj].enginechrome, req.body.bulk[obj].enginedetailing, req.body.bulk[obj].enginecleanliness, req.body.bulk[obj].bfundercarriage, req.body.bulk[obj].bfsuspension, req.body.bulk[obj].bfchrome, req.body.bulk[obj].bfdetailing, req.body.bulk[obj].bfcleanliness, req.body.bulk[obj].modspaint, req.body.bulk[obj].modsbody, req.body.bulk[obj].modswrap, req.body.bulk[obj].modsrims, req.body.bulk[obj].modsinterior, req.body.bulk[obj].modsother, req.body.bulk[obj].modsice, req.body.bulk[obj].modsaftermarket, req.body.bulk[obj].modswip, req.body.bulk[obj].modsoverall)
+        params.push(req.body.bulk[obj].carid, req.body.bulk[obj].year, req.body.bulk[obj].make, req.body.bulk[obj].model, 
+            req.body.bulk[obj].racerturbo, req.body.bulk[obj].racersupercharged, req.body.bulk[obj].racerperformance, req.body.bulk[obj].racerhorsepower, 
+            req.body.bulk[obj].caroverall, req.body.bulk[obj].enginemodifications, req.body.bulk[obj].engineperformance, req.body.bulk[obj].enginechrome, req.body.bulk[obj].enginedetailing, req.body.bulk[obj].enginecleanliness, 
+            req.body.bulk[obj].bfundercarriage, req.body.bulk[obj].bfsuspension, req.body.bulk[obj].bfchrome, req.body.bulk[obj].bfdetailing, req.body.bulk[obj].bfcleanliness, 
+            req.body.bulk[obj].modspaint, req.body.bulk[obj].modsbody, req.body.bulk[obj].modswrap, req.body.bulk[obj].modsrims, req.body.bulk[obj].modsinterior, req.body.bulk[obj].modsother, req.body.bulk[obj].modsice, req.body.bulk[obj].modsaftermarket, req.body.bulk[obj].modswip, req.body.bulk[obj].modsoverall)
 
     }
 
@@ -267,9 +280,19 @@ app.post("/api/owners/", (req, res, next) => {
 });
 
 // endpoint to update a car/multiple cars
-// carid1, year1, make1, model1, racerturbo1, racersupercharged1, racerperformance1, racerhorsepower1, caroverall1, enginemodifications1, engineperformance1, enginechrome1, enginedetailing1, enginecleanliness1, bfundercarriage1, bfsuspension1, bfchrome1, bfdetailing1, bfcleanliness1, modspaint1, modsbody1, modswrap1, modsrims1, modsinterior1, modsother1, modsice1, modsaftermarket1, modswip1, and modsoverall1 are values being updated
-// carid2, year2, make2, model2, racerturbo2, racersupercharged2, racerperformance2, racerhorsepower2, caroverall2, enginemodifications2, engineperformance2, enginechrome2, enginedetailing2, enginecleanliness2, bfundercarriage2, bfsuspension2, bfchrome2, bfdetailing2, bfcleanliness2, modspaint2, modsbody2, modswrap2, modsrims2, modsinterior2, modsother2, modsice2, modsaftermarket2, modswip2, and modsoverall2 are query parameters
-app.patch("/api/cars/:carid", (req, res, next) => {
+/*
+    carid1, year1, make1, model1, 
+    racerturbo1, racersupercharged1, racerperformance1, racerhorsepower1, 
+    caroverall1, enginemodifications1, engineperformance1, enginechrome1, enginedetailing1, enginecleanliness1, 
+    bfundercarriage1, bfsuspension1, bfchrome1, bfdetailing1, bfcleanliness1, 
+    modspaint1, modsbody1, modswrap1, modsrims1, modsinterior1, modsother1, modsice1, modsaftermarket1, modswip1, and modsoverall1 are values being updated
+    carid2, year2, make2, model2, 
+    racerturbo2, racersupercharged2, racerperformance2, racerhorsepower2, 
+    caroverall2, enginemodifications2, engineperformance2, enginechrome2, enginedetailing2, enginecleanliness2, 
+    bfundercarriage2, bfsuspension2, bfchrome2, bfdetailing2, bfcleanliness2, 
+    modspaint2, modsbody2, modswrap2, modsrims2, modsinterior2, modsother2, modsice2, modsaftermarket2, modswip2, and modsoverall2 are query parameters
+*/
+app.patch("/api/cars/", (req, res, next) => {
 
     // create data object
     var data = {
@@ -335,8 +358,26 @@ app.patch("/api/cars/:carid", (req, res, next) => {
 
     // initialize the sql command and the parameter array
     // COALESCE allows the user to update some fields and leave others with their initial values
-    var sql = `UPDATE Cars SET Car_ID = COALESCE(?, Car_ID), Year = COALESCE(?, Year), Make = COALESCE(?, Make), Model = COALESCE(?, Model), Racer_Turbo = COALESCE(?, Racer_Turbo), Racer_Supercharged = COALESCE(?, Racer_Supercharged), Racer_Performance = COALESCE(?, Racer_Performance), Racer_Horsepower = COALESCE(?, Racer_Horsepower), Car_Overall = COALESCE(?, Car_Overall), Engine_Modifications = COALESCE(?, Engine_Modifications), Engine_Performance = COALESCE(?, Engine_Performance), Engine_Chrome = COALESCE(?, Engine_Chrome), Engine_Detailing = COALESCE(?, Engine_Detailing), Engine_Cleanliness = COALESCE(?, Engine_Cleanliness), Body_Frame_Undercarriage = COALESCE(?, Body_Frame_Undercarriage), Body_Frame_Suspension = COALESCE(?, Body_Frame_Suspension), Body_Frame_Chrome = COALESCE(?, Body_Frame_Chrome), Body_Frame_Detailing = COALESCE(?, Body_Frame_Detailing), Body_Frame_Cleanliness = COALESCE(?, Body_Frame_Cleanliness), Mods_Paint = COALESCE(?, Mods_Paint), Mods_Body = COALESCE(?, Mods_Body), Mods_Wrap = COALESCE(?, Mods_Wrap), Mods_Rims = COALESCE(?, Mods_Rims), Mods_Interior = COALESCE(?, Mods_Interior), Mods_Other = COALESCE(?, Mods_Other), Mods_ICE = COALESCE(?, Mods_ICE), Mods_Aftermarket = COALESCE(?, Mods_Aftermarket), Mods_WIP = COALESCE(?, Mods_WIP), Mods_Overall = COALESCE(?, Mods_Overall) WHERE Car_ID = COALESCE(?, Car_ID) AND Year = COALESCE(?, Year) AND Make = COALESCE(?, Make) AND Model = COALESCE(?, Model) AND Racer_Turbo = COALESCE(?, Racer_Turbo) AND Racer_Supercharged = COALESCE(?, Racer_Supercharged) AND  Racer_Performance = COALESCE(?, Racer_Performance) AND Racer_Horsepower = COALESCE(?, Racer_Horsepower) AND Car_Overall = COALESCE(?, Car_Overall) AND Engine_Modifications = COALESCE(?, Engine_Modifications) AND Engine_Performance = COALESCE(?, Engine_Performance) AND Engine_Chrome = COALESCE(?, Engine_Chrome) AND Engine_Detailing = COALESCE(?, Engine_Detailing) AND Engine_Cleanliness = COALESCE(?, Engine_Cleanliness) AND Body_Frame_Undercarriage = COALESCE(?, Body_Frame_Undercarriage) AND Body_Frame_Suspension = COALESCE(?, Body_Frame_Suspension) AND Body_Frame_Chrome = COALESCE(?, Body_Frame_Chrome) AND Body_Frame_Detailing = COALESCE(?, Body_Frame_Detailing) AND Body_Frame_Cleanliness = COALESCE(?, Body_Frame_Cleanliness) AND Mods_Paint = COALESCE(?, Mods_Paint) AND Mods_Body = COALESCE(?, Mods_Body) AND Mods_Wrap = COALESCE(?, Mods_Wrap) AND Mods_Rims = COALESCE(?, Mods_Rims) AND Mods_Interior = COALESCE(?, Mods_Interior) AND Mods_Other = COALESCE(?, Mods_Other) AND Mods_ICE = COALESCE(?, Mods_ICE) AND Mods_Aftermarket = COALESCE(?, Mods_Aftermarket) AND Mods_WIP = COALESCE(?, Mods_WIP) AND Mods_Overall = COALESCE(?, Mods_Overall)`; 
-    var params = [data.carid1, data.year1, data.make1, data.model1, data.racerturbo1, data.racersupercharged1, data.racerperformance1, data.racerhorsepower1, data.caroverall1, data.enginemodifications1, data.engineperformance1, data.enginechrome1, data.enginedetailing1, data.enginecleanliness1, data.bfundercarriage1, data.bfsuspension1, data.bfchrome1, data.bfdetailing1, data.bfcleanliness1, data.modspaint1, data.modsbody1, data.modswrap1, data.modsrims1, data.modsinterior1, data.modsother1, data.modsice1, data.modsaftermarket1, data.modswip1, data.modsoverall1, data.carid2, data.year2, data.make2, data.model2, data.racerturbo2, data.racersupercharged2, data.racerperformance2, data.racerhorsepower2, data.caroverall2, data.enginemodifications2, data.engineperformance2, data.enginechrome2, data.enginedetailing2, data.enginecleanliness2, data.bfundercarriage2, data.bfsuspension2, data.bfchrome2, data.bfdetailing2, data.bfcleanliness2, data.modspaint2, data.modsbody2, data.modswrap2, data.modsrims2, data.modsinterior2, data.modsother2, data.modsice2, data.modsaftermarket2, data.modswip2, data.modsoverall2];
+    var sql = `UPDATE Cars SET Car_ID = COALESCE(?, Car_ID), Year = COALESCE(?, Year), Make = COALESCE(?, Make), Model = COALESCE(?, Model), 
+    Racer_Turbo = COALESCE(?, Racer_Turbo), Racer_Supercharged = COALESCE(?, Racer_Supercharged), Racer_Performance = COALESCE(?, Racer_Performance), Racer_Horsepower = COALESCE(?, Racer_Horsepower), 
+    Car_Overall = COALESCE(?, Car_Overall), Engine_Modifications = COALESCE(?, Engine_Modifications), Engine_Performance = COALESCE(?, Engine_Performance), Engine_Chrome = COALESCE(?, Engine_Chrome), Engine_Detailing = COALESCE(?, Engine_Detailing), Engine_Cleanliness = COALESCE(?, Engine_Cleanliness), 
+    Body_Frame_Undercarriage = COALESCE(?, Body_Frame_Undercarriage), Body_Frame_Suspension = COALESCE(?, Body_Frame_Suspension), Body_Frame_Chrome = COALESCE(?, Body_Frame_Chrome), Body_Frame_Detailing = COALESCE(?, Body_Frame_Detailing), Body_Frame_Cleanliness = COALESCE(?, Body_Frame_Cleanliness), 
+    Mods_Paint = COALESCE(?, Mods_Paint), Mods_Body = COALESCE(?, Mods_Body), Mods_Wrap = COALESCE(?, Mods_Wrap), Mods_Rims = COALESCE(?, Mods_Rims), Mods_Interior = COALESCE(?, Mods_Interior), Mods_Other = COALESCE(?, Mods_Other), Mods_ICE = COALESCE(?, Mods_ICE), Mods_Aftermarket = COALESCE(?, Mods_Aftermarket), Mods_WIP = COALESCE(?, Mods_WIP), Mods_Overall = COALESCE(?, Mods_Overall) 
+    WHERE Car_ID = COALESCE(?, Car_ID) AND Year = COALESCE(?, Year) AND Make = COALESCE(?, Make) AND Model = COALESCE(?, Model) 
+    AND Racer_Turbo = COALESCE(?, Racer_Turbo) AND Racer_Supercharged = COALESCE(?, Racer_Supercharged) AND  Racer_Performance = COALESCE(?, Racer_Performance) AND Racer_Horsepower = COALESCE(?, Racer_Horsepower) 
+    AND Car_Overall = COALESCE(?, Car_Overall) AND Engine_Modifications = COALESCE(?, Engine_Modifications) AND Engine_Performance = COALESCE(?, Engine_Performance) AND Engine_Chrome = COALESCE(?, Engine_Chrome) AND Engine_Detailing = COALESCE(?, Engine_Detailing) AND Engine_Cleanliness = COALESCE(?, Engine_Cleanliness) AND 
+    Body_Frame_Undercarriage = COALESCE(?, Body_Frame_Undercarriage) AND Body_Frame_Suspension = COALESCE(?, Body_Frame_Suspension) AND Body_Frame_Chrome = COALESCE(?, Body_Frame_Chrome) AND Body_Frame_Detailing = COALESCE(?, Body_Frame_Detailing) AND Body_Frame_Cleanliness = COALESCE(?, Body_Frame_Cleanliness) AND 
+    Mods_Paint = COALESCE(?, Mods_Paint) AND Mods_Body = COALESCE(?, Mods_Body) AND Mods_Wrap = COALESCE(?, Mods_Wrap) AND Mods_Rims = COALESCE(?, Mods_Rims) AND Mods_Interior = COALESCE(?, Mods_Interior) AND Mods_Other = COALESCE(?, Mods_Other) AND Mods_ICE = COALESCE(?, Mods_ICE) AND Mods_Aftermarket = COALESCE(?, Mods_Aftermarket) AND Mods_WIP = COALESCE(?, Mods_WIP) AND Mods_Overall = COALESCE(?, Mods_Overall)`; 
+    var params = [data.carid1, data.year1, data.make1, 
+        data.model1, data.racerturbo1, data.racersupercharged1, data.racerperformance1, data.racerhorsepower1, 
+        data.caroverall1, data.enginemodifications1, data.engineperformance1, data.enginechrome1, data.enginedetailing1, data.enginecleanliness1, 
+        data.bfundercarriage1, data.bfsuspension1, data.bfchrome1, data.bfdetailing1, data.bfcleanliness1, 
+        data.modspaint1, data.modsbody1, data.modswrap1, data.modsrims1, data.modsinterior1, data.modsother1, data.modsice1, data.modsaftermarket1, data.modswip1, data.modsoverall1, 
+        data.carid2, data.year2, data.make2, data.model2, 
+        data.racerturbo2, data.racersupercharged2, data.racerperformance2, data.racerhorsepower2, 
+        data.caroverall2, data.enginemodifications2, data.engineperformance2, data.enginechrome2, data.enginedetailing2, data.enginecleanliness2, 
+        data.bfundercarriage2, data.bfsuspension2, data.bfchrome2, data.bfdetailing2, data.bfcleanliness2, 
+        data.modspaint2, data.modsbody2, data.modswrap2, data.modsrims2, data.modsinterior2, data.modsother2, data.modsice2, data.modsaftermarket2, data.modswip2, data.modsoverall2];
 
     db.run(sql, params, function(err) {
 
@@ -395,8 +436,18 @@ app.patch("/api/cars/:carid", (req, res, next) => {
 
     // initialize the sql command and the parameter array
     // COALESCE allows the user to update some fields and leave others with their initial values
-    var sql = `UPDATE Cars SET Year = COALESCE(?, Year), Make = COALESCE(?, Make), Model = COALESCE(?, Model), Racer_Turbo = COALESCE(?, Racer_Turbo), Racer_Supercharged = COALESCE(?, Racer_Supercharged), Racer_Performance = COALESCE(?, Racer_Performance), Racer_Horsepower = COALESCE(?, Racer_Horsepower), Car_Overall = COALESCE(?, Car_Overall), Engine_Modifications = COALESCE(?, Engine_Modifications), Engine_Performance = COALESCE(?, Engine_Performance), Engine_Chrome = COALESCE(?, Engine_Chrome), Engine_Detailing = COALESCE(?, Engine_Detailing), Engine_Cleanliness = COALESCE(?, Engine_Cleanliness), Body_Frame_Undercarriage = COALESCE(?, Body_Frame_Undercarriage), Body_Frame_Suspension = COALESCE(?, Body_Frame_Suspension), Body_Frame_Chrome = COALESCE(?, Body_Frame_Chrome), Body_Frame_Detailing = COALESCE(?, Body_Frame_Detailing), Body_Frame_Cleanliness = COALESCE(?, Body_Frame_Cleanliness), Mods_Paint = COALESCE(?, Mods_Paint), Mods_Body = COALESCE(?, Mods_Body), Mods_Wrap = COALESCE(?, Mods_Wrap), Mods_Rims = COALESCE(?, Mods_Rims), Mods_Interior = COALESCE(?, Mods_Interior), Mods_Other = COALESCE(?, Mods_Other), Mods_ICE = COALESCE(?, Mods_ICE), Mods_Aftermarket = COALESCE(?, Mods_Aftermarket), Mods_WIP = COALESCE(?, Mods_WIP), Mods_Overall = COALESCE(?, Mods_Overall) WHERE Car_ID = ?`;
-    var params = [data.year, data.make, data.model, data.racerturbo, data.racersupercharged, data.racerperformance, data.racerhorsepower, data.caroverall, data.enginemodifications, data.engineperformance, data.enginechrome, data.enginedetailing, data.enginecleanliness, data.bfundercarriage, data.bfsuspension, data.bfchrome, data.bfdetailing, data.bfcleanliness, data.modspaint, data.modsbody, data.modswrap, data.modsrims, data.modsinterior, data.modsother, data.modsice, data.modsaftermarket, data.modswip, data.modsoverall, data.carid];
+    var sql = `UPDATE Cars SET Year = COALESCE(?, Year), Make = COALESCE(?, Make), Model = COALESCE(?, Model), 
+    Racer_Turbo = COALESCE(?, Racer_Turbo), Racer_Supercharged = COALESCE(?, Racer_Supercharged), Racer_Performance = COALESCE(?, Racer_Performance), Racer_Horsepower = COALESCE(?, Racer_Horsepower), 
+    Car_Overall = COALESCE(?, Car_Overall), Engine_Modifications = COALESCE(?, Engine_Modifications), Engine_Performance = COALESCE(?, Engine_Performance), Engine_Chrome = COALESCE(?, Engine_Chrome), Engine_Detailing = COALESCE(?, Engine_Detailing), Engine_Cleanliness = COALESCE(?, Engine_Cleanliness), 
+    Body_Frame_Undercarriage = COALESCE(?, Body_Frame_Undercarriage), Body_Frame_Suspension = COALESCE(?, Body_Frame_Suspension), Body_Frame_Chrome = COALESCE(?, Body_Frame_Chrome), Body_Frame_Detailing = COALESCE(?, Body_Frame_Detailing), Body_Frame_Cleanliness = COALESCE(?, Body_Frame_Cleanliness), 
+    Mods_Paint = COALESCE(?, Mods_Paint), Mods_Body = COALESCE(?, Mods_Body), Mods_Wrap = COALESCE(?, Mods_Wrap), Mods_Rims = COALESCE(?, Mods_Rims), Mods_Interior = COALESCE(?, Mods_Interior), Mods_Other = COALESCE(?, Mods_Other), Mods_ICE = COALESCE(?, Mods_ICE), Mods_Aftermarket = COALESCE(?, Mods_Aftermarket), Mods_WIP = COALESCE(?, Mods_WIP), Mods_Overall = COALESCE(?, Mods_Overall) 
+    WHERE Car_ID = ?`;
+    var params = [data.year, data.make, data.model, 
+        data.racerturbo, data.racersupercharged, data.racerperformance, data.racerhorsepower, 
+        data.caroverall, data.enginemodifications, data.engineperformance, data.enginechrome, data.enginedetailing, data.enginecleanliness, 
+        data.bfundercarriage, data.bfsuspension, data.bfchrome, data.bfdetailing, data.bfcleanliness, 
+        data.modspaint, data.modsbody, data.modswrap, data.modsrims, data.modsinterior, data.modsother, data.modsice, data.modsaftermarket, data.modswip, data.modsoverall, 
+        data.carid];
 
     db.run(sql, params, function(err) {
 
