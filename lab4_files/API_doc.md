@@ -86,6 +86,20 @@ Endpoint to get a list of the owners in the database along with the car ID of th
 
 `GET /api/cars/{carid}`
 
+Endpoint to get a sinlge car in the database along with information about that car.
+
+| Path parameter | Description |
+| -------------- | ----------- |
+| {carid} | Unique ID of the car being looked up |
+
+### Sample request to get a single car in the database by ID
+
+![GET request for a single car in the database](./images/9-get-single-car-request.png)
+
+### Sample response of a single car in the database by ID
+
+![GET response for a single car in the database](./images/10-get-single-car-response.png)
+
 `GET /api/owners/{name}`
 
 `POST /api/cars/`
