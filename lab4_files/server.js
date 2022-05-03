@@ -153,7 +153,7 @@ app.post("/api/cars/", (req, res, next) => {
     var params = []
     let numObjsToInsert = 0;
 
-    // loop trhough the request body that was passed in
+    // loop through the request body that was passed in
     for(var obj in req.body.bulk) {
 
         // create an array of potential errors
