@@ -2,7 +2,7 @@
 
 ### Resource Description
 
-This API enables the user to view data on cars in a database, add to the data in the database, and update the data in the database.
+This API enables the user to view data in a database of cars, to add data to the database, and to update the data in the database. 
 
 ### Endpoints and Methods
 
@@ -131,7 +131,6 @@ Get owner with name Ted.
 `POST /api/cars/`
 --------------------------------------------------------------
 
-
 Endpoint to add a new car/new cars to the database.
 
 | Body parameter | Description |
@@ -140,35 +139,35 @@ Endpoint to add a new car/new cars to the database.
 
 | Car object parameter | Required/optional | Description | Type |
 | -------------------- | ----------------- | ----------- | ---- |
-| carid | Optional | Unique ID number identifying each car | INT |
-| year | Optional | The car's year | INT |
-| make | Optional | The car's make | TEXT |
-| model | Optional | The car's model | TEXT |
-| racerturbo | Optional | Score for the car's racer turbo | INT |
-| racersupercharged | Optional | Score for the car's racer supercharged | INT |
-| racerperformance | Optional | Score for the car's racer performance | INT |
-| racerhorsepower | Optional | Score for the car's racer horsepower | INT |
-| caroverall | Optional | Score for the car overall | INT |
-| enginemodifications | Optional | Score for the car's engine modifications | INT |
-| engineperformance | Optional | Score for the car's engine performance | INT |
-| enginechrome | Optional | Score for the car's engine chrome | INT |
-| enginedetailing | Optional | Score for the car's engine detailing | INT |
-| enginecleanliness | Optional | Score for the car's engine cleanliness | INT |
-| bfundercarriage | Optional | Score for the car's body frame undercarriage | INT |
-| bfsuspension | Optional | Score for the car's body frame suspension | INT |
-| bfchrome | Optional | Score for the car's body frame chrome | INT |
-| bfdetailing | Optional | Score for the car's body frame detailing | INT |
-| bfcleanliness | Optional | Score for the car's body frame cleanliness | INT |
-| modspaint | Optional | Score for the car's paint mods | INT |
-| modsbody | Optional | Score for the car's body mods | INT |
-| modswrap | Optional | Score for the car's wrap mods | INT |
-| modsrims | Optional | Score for the car's rims mods | INT |
-| modsinterior | Optional | Score for the car's interior mods | INT |
-| modsother | Optional | Score for the car's other mods | INT |
-| modsice | Optional | Score for the car's ICE mods | INT |
-| modsaftermarket | Optional | Score for the car's aftermarket mods | INT |
-| modswip | Optional | Score for the car's WIP mods | INT |
-| modsoverall | Optional | Score for the car's overall mods | INT | 
+| carid | Required | Unique ID number identifying each car | INT |
+| year | Required | The car's year | INT |
+| make | Required | The car's make | TEXT |
+| model | Required | The car's model | TEXT |
+| racerturbo | Required | Score for the car's racer turbo | INT |
+| racersupercharged | Required | Score for the car's racer supercharged | INT |
+| racerperformance | Required | Score for the car's racer performance | INT |
+| racerhorsepower | Required | Score for the car's racer horsepower | INT |
+| caroverall | Required | Score for the car overall | INT |
+| enginemodifications | Required | Score for the car's engine modifications | INT |
+| engineperformance | Required | Score for the car's engine performance | INT |
+| enginechrome | Required | Score for the car's engine chrome | INT |
+| enginedetailing | Required | Score for the car's engine detailing | INT |
+| enginecleanliness | Required | Score for the car's engine cleanliness | INT |
+| bfundercarriage | Required | Score for the car's body frame undercarriage | INT |
+| bfsuspension | Required | Score for the car's body frame suspension | INT |
+| bfchrome | Required | Score for the car's body frame chrome | INT |
+| bfdetailing | Required | Score for the car's body frame detailing | INT |
+| bfcleanliness | Required | Score for the car's body frame cleanliness | INT |
+| modspaint | Required | Score for the car's paint mods | INT |
+| modsbody | Required | Score for the car's body mods | INT |
+| modswrap | Required | Score for the car's wrap mods | INT |
+| modsrims | Required | Score for the car's rims mods | INT |
+| modsinterior | Required | Score for the car's interior mods | INT |
+| modsother | Required | Score for the car's other mods | INT |
+| modsice | Required | Score for the car's ICE mods | INT |
+| modsaftermarket | Required | Score for the car's aftermarket mods | INT |
+| modswip | Required | Score for the car's WIP mods | INT |
+| modsoverall | Required | Score for the car's overall mods | INT | 
 
 ### Sample request to post a single car to the database
 
@@ -201,9 +200,9 @@ Endpoint to add a new owner/new owners to the database.
 
 | Owner object parameter | Required/optional | Description | Type |
 | ---------------------- | ----------------- | ----------- | ---- |
-| carid | Optional | Unique ID number identifying each car | INT |
-| name | Optional | Name of car's owner | TEXT |
-| email | Optional | Email address of car's owner | TEXT |
+| carid | Required | Unique ID number identifying each car | INT |
+| name | Required | Name of car's owner | TEXT |
+| email | Required | Email address of car's owner | TEXT |
 
 ### Sample request to post a single owner to the database
 
@@ -228,7 +227,7 @@ Post owners with names John, Jack, and Jim, who own cars with IDs 1234, 5678, an
 `PATCH /api/cars/`
 --------------------------------------------------------------
 
-Endpoint to update a single car or multiple cars already in the database. The body parameter(s) are the one(s) being updated, and the query string parameters enable the filtering of the data in the database to allow for only updating of records that meet certain specifications. 
+Endpoint to update a single car or multiple cars already in the database. The body parameter(s) are the one(s) being updated, and the query string parameters enable the filtering of the data in the database to allow for updating only records that meet certain specifications. 
 
 | Body parameter | Required/optional | Description | Type |
 | -------------- | ----------------- | ----------- | ---- |
@@ -343,7 +342,7 @@ Endpoint to update a single car in the database by Car ID.
 
 ### Sample request to update a single car in the database by car ID
 
-Update the racer turbo score, the racer supercharged score, the racer performance score, and the racer horsepower score for the car with ID 167 each to 100.
+Update the racer turbo score to 100, the racer supercharged score to 100, the racer performance score to 100, and the racer horsepower score to 100 for the car with ID 167.
 
 ![PATCH request for a single car](./images/23-patch-single-car-request.png)
 
@@ -354,7 +353,7 @@ Update the racer turbo score, the racer supercharged score, the racer performanc
 `PATCH /api/owners/`
 --------------------------------------------------------------
 
-Endpoint to update a single owner or multiple owners already in the database. The body parameter(s) are the one(s) being updated, and the query string parameters enable the filtering of the data in the database to allow for only updating of records that meet certain specifications. 
+Endpoint to update a single owner or multiple owners already in the database. The body parameter(s) are the one(s) being updated, and the query string parameters enable the filtering of the data in the database to allow for updating only records that meet certain specifications. 
 
 | Body parameter | Required/optional | Description | Type |
 | ---------------------- | ----------------- | ----------- | ---- |
