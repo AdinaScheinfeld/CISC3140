@@ -16,7 +16,7 @@ This project is a backend API built using a combination of SQL and JavaScript th
 
 ### Input file
 
-- [data.csv](https://gist.github.com/katychuang/d66a59b6db4e59c16efd4c42ad411f8e): Input file containing timestamps and various metrics on cars including the name and email address of the owner of each car, the year of each car, the make of each car, the ID of each car, and the racer turbo, racer supercharged, racer performance, racer horsepower, car overall, engine modifications, engine performance, engine chrome, engine detailing, engine cleanliness, body frame undercarriage, body frame suspension, body frame chrome, body frame detailing, body frame cleanliness, mods paint, mods body, mods wrap, mods rims, mods interior, mods ICE, mods aftermarket mods WIP, and mods overall scores for each car. The input file also contains the ID and name of each judge who judged the cars. 
+- [data.csv](https://gist.github.com/katychuang/d66a59b6db4e59c16efd4c42ad411f8e): Input file containing timestamps and various metrics on cars, including the name and email address of the owner of each car, the year of each car, the make of each car, the ID of each car, and the racer turbo, racer supercharged, racer performance, racer horsepower, car overall, engine modifications, engine performance, engine chrome, engine detailing, engine cleanliness, body frame undercarriage, body frame suspension, body frame chrome, body frame detailing, body frame cleanliness, mods paint, mods body, mods wrap, mods rims, mods interior, mods ICE, mods aftermarket mods WIP, and mods overall scores for each car. The input file also contains the ID and name of each judge who judged the cars. 
 
 ### Source code
 
@@ -32,7 +32,7 @@ This project is a backend API built using a combination of SQL and JavaScript th
 
 ## Getting Started
 
-After cloning the project repository, move to the [lab4_files](../lab4_files/) folder and run the followin two lines of code to create the database.
+After cloning the project repository, cd into the [lab4_files](../lab4_files/) folder and run the following two lines of code to create the database.
 
 ```
 chmod u+x create_databse.sql
