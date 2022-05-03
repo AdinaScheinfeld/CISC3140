@@ -499,7 +499,7 @@ app.patch("/api/owners/", (req, res, next) => {
             return console.error(err.message);
         }
 
-        //print message to console indicating how many changes occurred
+        // print message to console indicating how many changes occurred
         console.log(`Row(s) updated: ${this.changes}`);
     });
 
