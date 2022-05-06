@@ -2,6 +2,10 @@
 var express = require("express")
 var app = express()
 
+// require CORS to allow frontend to access database
+var cors = require('cors')
+app.use(cors())
+
 // connect to the database
 var db = require("./database.js")
 
@@ -116,7 +120,7 @@ app.get("/api/cars/:carid", (req, res, next) => {
     });
 });
 
-// endpoint to get a single owner by Car ID
+// endpoint to get a single owner by name
 app.get("/api/owners/:name", (req, res, next) => {
 
     // initialize the sql command and the parameter array
@@ -225,6 +229,45 @@ app.post("/api/cars/", (req, res, next) => {
             "data": params,
             "id": this.lastID
         })
+    });
+});
+
+// endpoint to add a single new owner
+app.post("/api/owners-single-add/", (req, res, next) => {
+
+    // initialize the sql command, the parameter array
+    var sql = "INSERT INTO Owners (Car_ID, Name, Email) VALUES (?, ?, ?)"
+    params = [];
+
+    // create an array of potential errors
+    var errors = []
+    if(!req.body.carid && req.body.carid != 0) { errors.push("No Car ID specified"); }
+    if(!req.body.name) { errors.push("No Name specified"); }
+    if(!req.body.email) { errors.push("No Email specified"); }
+
+    // indicate any errors
+    if(errors.length) {
+        res.status(400).json({"error": errors.join(",")});
+        return;
+    }
+    // push each object that was passed in to the params array
+    params.push(req.body.carid, req.body.name, req.body.email)
+
+    db.run(sql, params, function(err, result) {
+
+        // error checking
+        if(err) {
+            res.status(400).json({"error": err.message})
+            return;
+        }
+
+        // successful execution
+        res.json({
+             "message": "success",
+             "data": params,
+             "id": this.lastID
+        })
+
     });
 });
 
