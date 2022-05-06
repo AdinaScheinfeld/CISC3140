@@ -34,7 +34,7 @@ root.render(
       <Route path="/cars/:carid" element={ <SingleCar /> }/>
       
       <Route path="owners/landing" element={ <OwnersRoute />} />
-      <Route path="owners" element={ <ViewOwnersRoute />} />
+      <Route path="/owners" element={ <ViewOwnersRoute />} />
       <Route path="/owners/:name" element={ <ViewSingleOwnerRoute />} />
       <Route path="owners-single-add" element={ <AddOwnerRoute />} />
       <Route path="/owners/:carid" element={ <UpdateOwnerRoute /> }/>
