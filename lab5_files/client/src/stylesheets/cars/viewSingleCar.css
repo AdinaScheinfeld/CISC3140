@@ -1,0 +1,43 @@
+.singleCarDisplay {
+    /* top right bottom left*/
+    padding: 1px 20px 10px 20px;
+    background-color: lightgray;
+    margin: 30px 10px;
+    border-radius: 10px;
+}
+
+.singleCarInput {
+    background-color: white;
+    border-color: gray;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.singleCarButton {
+    background-color: white;
+    border-radius: 5px;
+    border-color:gray;
+}
+
+.singleCarButton:hover {
+    background-color: lightgray;
+}
+
+.singleCarButton:active {
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+}
+
+.singleCarTable {
+    border-radius: 5px;
+    padding: 10px;
+    /* top right bottom left*/
+    margin: 10px 0px 10px -15px;
+    background-color: lightgray;
+}
+.singleCarCell {
+    /* top and bottom right and left */
+    padding: 5px 10px;
+}

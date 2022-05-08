@@ -11,8 +11,11 @@ import reportWebVitals from './reportWebVitals';
 
 // cars landing page
 import CarsRoute from './routes/cars/carsRoute';
+// view cars 
+import ViewCarsRoute from './routes/cars/viewCarsRoute';
+// view single car
+import ViewSingleCarRoute from './routes/cars/viewSingleCarRoute';
 
-import SingleCar from './components/singleCar/singleCar';
 
 // owners landing page
 import OwnersRoute from './routes/owners/ownersRoute';
@@ -33,9 +36,8 @@ root.render(
       <Route path="/" element={ <React.StrictMode> <App /> </React.StrictMode> } />
       
       <Route path="cars/landing" element={ <CarsRoute />} />
-
-      <Route path="cars" element={ <CarsRoute />} />
-      <Route path="/cars/:carid" element={ <SingleCar /> }/>
+      <Route path="/cars" element={ <ViewCarsRoute />} />
+      <Route path="/cars/:carid" element={ <ViewSingleCarRoute />} />
       
       <Route path="owners/landing" element={ <OwnersRoute />} />
       <Route path="/owners" element={ <ViewOwnersRoute />} />
