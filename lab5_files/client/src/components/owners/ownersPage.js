@@ -1,3 +1,5 @@
+import '../../stylesheets/owners/ownersPage.css'
+
 import Navbar from "../navigation/navbar"
 import OwnersNavbar from "../navigation/ownersNavbar"
 
@@ -8,10 +10,9 @@ export default function OwnersPage() {
     return (
 
         <div>
-
             <Navbar />
-            <h1>Owners Homepage</h1>
             <OwnersNavbar />
+            <h1>Owners Homepage</h1>
         </div>
   )
 }

@@ -1,3 +1,5 @@
+import '../../stylesheets/owners/viewOwners.css'
+
 import React, { useEffect, useState } from "react";
 
 import Navbar from "../navigation/navbar";
@@ -46,6 +48,7 @@ function ViewOwners() {
             {(typeof backendData.data === 'undefined') ? (
                 <div>
                     <Navbar />
+                    <div className="blankSpace"></div>
                     <OwnersNavbar />
 
                     <p>Loading...</p>
@@ -54,9 +57,9 @@ function ViewOwners() {
                 <div>
 
                     <Navbar />
+                    <div className="blankSpace"></div>
                     <OwnersNavbar />
 
-                    <h1>View Single Owner</h1>
                     <ViewSingleOwner />
 
                     <h1>Begin typing a name or email address: </h1>
@@ -81,8 +84,8 @@ function ViewOwners() {
                             (name !== '' && email !== ''
                             ) ? (
                                 backendData.data
-                                .filter(owner => owner.Name.toLowerCase().includes(name.toLowerCase()))
-                                .filter(owner => owner.Email.toLowerCase().includes(email.toLowerCase()))
+                                .filter(owner => owner.Name.toLowerCase().startsWith(name.toLowerCase()))
+                                .filter(owner => owner.Email.toLowerCase().startsWith(email.toLowerCase()))
                                 .map((owner, i) => (
                                     <tr key={i}>
                                         <td>{ owner.Car_ID }</td>
@@ -95,7 +98,7 @@ function ViewOwners() {
                                 (name !== '') 
                             ) ? (
                                 backendData.data
-                                .filter(owner => owner.Name.toLowerCase().includes(name.toLowerCase()))
+                                .filter(owner => owner.Name.toLowerCase().startsWith(name.toLowerCase()))
                                 .map((owner, i) => (
                                     <tr key={i}>
                                         <td>{ owner.Car_ID }</td>
@@ -108,7 +111,7 @@ function ViewOwners() {
                                 (email !== '') 
                             ) ? (
                                 backendData.data
-                                .filter(owner => owner.Email.toLowerCase().includes(email.toLowerCase()))
+                                .filter(owner => owner.Email.toLowerCase().startsWith(email.toLowerCase()))
                                 .map((owner, i) => (
                                     <tr key={i}>
                                         <td>{ owner.Car_ID }</td>

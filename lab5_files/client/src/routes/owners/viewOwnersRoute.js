@@ -4,7 +4,6 @@ import ViewOwners from "../../components/owners/viewOwners"
 export default function ViewOwnersRoute() {
     return (
         <div>
-            <h2>All Owners</h2>
             <ViewOwners />
         </div>
     )

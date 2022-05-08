@@ -1,0 +1,43 @@
+.display {
+    /* top right bottom left*/
+    padding: 1px 20px 10px 20px;
+    background-color: lightgray;
+    margin-bottom: 30px 10px;
+    border-radius: 10px;
+}
+
+.singleOwnerInput {
+    background-color: white;
+    border-color: gray;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.singleOwnerButton {
+    background-color: white;
+    border-radius: 5px;
+    border-color:gray;
+}
+
+.singleOwnerButton:hover {
+    background-color: lightgray;
+}
+
+.singleOwnerButton:active {
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+}
+
+.singleOwnerTable {
+    border-radius: 5px;
+    padding: 10px;
+    /* top right bottom left*/
+    margin: 10px 0px 10px -15px;
+    background-color: lightgray;
+}
+.singleOwnerCell {
+    /* top and bottom right and left */
+    padding: 5px 10px;
+}

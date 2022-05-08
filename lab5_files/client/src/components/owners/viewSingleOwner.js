@@ -1,3 +1,5 @@
+import '../../stylesheets/owners/viewSingleOwner.css'
+
 import React, { useState } from "react";
 
 export default function ViewSingleOwner(props) {
@@ -26,19 +28,31 @@ export default function ViewSingleOwner(props) {
 
     // return data on the requested owner
     return (
-        <div>
+        <div className='container'>
 
-            <form onSubmit={submitHandler}>
-                <input type="text" value={name} placeholder="Owner's name" onChange={e => setName(e.target.value)} />
-                <button type="submit">Submit</button>
-            </form>
+            <div className="display">
 
-            <div>
-                {(typeof backendData.data === 'undefined') ? (
-                    <p>{" "}</p>
-                ): (
-                    <p> Car ID: {backendData.data.Car_ID}  Name: {backendData.data.Name}  Email: {backendData.data.Email}</p>
-                )}
+                <h2>Enter the name of an owner to view information on that owner's car.</h2>
+
+                <form onSubmit={submitHandler}>
+                    <input type="text" value={name} placeholder="Owner's name" onChange={e => setName(e.target.value)} className="singleOwnerInput"/>
+                    <button type="submit" className="singleOwnerButton">Search</button>
+                </form>
+
+                <div>
+                    {(typeof backendData.data === 'undefined') ? (
+                        <p>{" "}</p>
+                    ): (
+                        <table className="singleOwnerTable">
+                            <tr>
+                                <td className="singleOwnerCell">Car ID: {backendData.data.Car_ID}</td>
+                                <td className="singleOwnerCell">Name: {backendData.data.Name}</td>
+                                <td className="singleOwnerCell">Email: {backendData.data.Email}</td>
+                            </tr>
+                        </table>
+                    )}
+                </div>
+
             </div>
 
         </div>

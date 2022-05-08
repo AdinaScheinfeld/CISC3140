@@ -1,0 +1,28 @@
+nav {
+    background-color: black;
+    margin-bottom: 10px;
+}
+
+.link {
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+    font-size: larger;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: lightgray;
+    font-weight: bolder;
+}
+
+.link:focus {
+    color: lightgray;
+    font-weight: bolder;
+}
+
+.link:active:focus {
+    color: gray;
+    font-weight: bolder;
+}
+
