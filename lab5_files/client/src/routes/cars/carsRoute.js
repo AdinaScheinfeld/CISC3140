@@ -1,10 +1,10 @@
-import Cars from "../../components/cars/cars"
+import CarsPage from "../../components/cars/carsPage"
 
+// route to cars homepage
 export default function CarsRoute() {
     return (
         <div>
-            <h2>Cars</h2>
-            <Cars />
+            <CarsPage />
         </div>
     )
 }

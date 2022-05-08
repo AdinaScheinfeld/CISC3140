@@ -9,10 +9,12 @@ import './index.css';
 
 import reportWebVitals from './reportWebVitals';
 
+// cars landing page
 import CarsRoute from './routes/cars/carsRoute';
+
 import SingleCar from './components/singleCar/singleCar';
 
-// landing page
+// owners landing page
 import OwnersRoute from './routes/owners/ownersRoute';
 // view owners 
 import ViewOwnersRoute from './routes/owners/viewOwnersRoute';
@@ -30,6 +32,8 @@ root.render(
     <Routes>
       <Route path="/" element={ <React.StrictMode> <App /> </React.StrictMode> } />
       
+      <Route path="cars/landing" element={ <CarsRoute />} />
+
       <Route path="cars" element={ <CarsRoute />} />
       <Route path="/cars/:carid" element={ <SingleCar /> }/>
       

@@ -1,15 +1,18 @@
-import { Link } from "react-router-dom"
+import '../../stylesheets/cars/carsPage.css'
 
+import Navbar from "../navigation/navbar"
+import CarsNavbar from "../navigation/carsNavbar"
+
+// cars homepage component
 export default function CarsPage() {
+  
+    // return the cars homepage
+    return (
 
-  return (
-
-    <div>
-      <h1>Cars Page</h1>
-      <nav>
-        <Link to="/cars">Cars</Link> | {" "}
-        <Link to="/owners">Owners</Link>
-      </nav>
-    </div>
+        <div>
+            <Navbar />
+            <CarsNavbar />
+            <h1>Cars Homepage</h1>
+        </div>
   )
 }
