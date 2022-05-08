@@ -1,0 +1,31 @@
+.updateCarContainer {
+    /* top right bottom left */
+    padding: 5px 20px 40px 20px;
+    background-color: lightgray;
+    margin: 30px 10px;
+    border-radius: 10px;
+}
+
+.updateCarInput {
+    background-color: white;
+    border-color: gray;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.updateCarButton {
+    background-color: white;
+    border-radius: 5px;
+    border-color:gray;
+}
+
+.updateCarButton:hover {
+    background-color: lightgray;
+}
+
+.updateCarButton:active {
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+}

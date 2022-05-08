@@ -16,6 +16,9 @@ import ViewCarsRoute from './routes/cars/viewCarsRoute';
 // view single car
 import ViewSingleCarRoute from './routes/cars/viewSingleCarRoute';
 
+// update a car
+import UpdateCarRoute from './routes/cars/updateCarRoute';
+
 
 // owners landing page
 import OwnersRoute from './routes/owners/ownersRoute';
@@ -38,6 +41,9 @@ root.render(
       <Route path="cars/landing" element={ <CarsRoute />} />
       <Route path="/cars" element={ <ViewCarsRoute />} />
       <Route path="/cars/:carid" element={ <ViewSingleCarRoute />} />
+
+      <Route path="/cars/update" element={ <UpdateCarRoute /> }/>
+
       
       <Route path="owners/landing" element={ <OwnersRoute />} />
       <Route path="/owners" element={ <ViewOwnersRoute />} />
