@@ -51,13 +51,10 @@ export default function UpdateOwner() {
             <h2>Please enter the Car ID, name, and email address of the owner to be updated.</h2>
 
             <form onSubmit={submitHandler}>
-                <label>
-                    Car ID: 
-                    <input type="number" value={carid} onChange={e => setCarID(e.target.value)} className="updateInput"/>
-                </label>
+                <input type="number" value={carid} onChange={e => setCarID(e.target.value)} placeholder="Car ID" className="updateInput"/>
                 <input type="text" value={name} placeholder="Name" onChange={e => setName(e.target.value)} className="updateInput"/>
                 <input type="text" value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} className="updateInput"/>
-                <button type="submit" className="updateButton">Submit</button>
+                <button type="submit" className="updateButton">Update</button>
             </form>
         </div>
 
