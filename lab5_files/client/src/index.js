@@ -15,7 +15,8 @@ import CarsRoute from './routes/cars/carsRoute';
 import ViewCarsRoute from './routes/cars/viewCarsRoute';
 // view single car
 import ViewSingleCarRoute from './routes/cars/viewSingleCarRoute';
-
+// add a car
+import AddCarRoute from './routes/cars/addCarRoute';
 // update a car
 import UpdateCarRoute from './routes/cars/updateCarRoute';
 
@@ -41,7 +42,7 @@ root.render(
       <Route path="cars/landing" element={ <CarsRoute />} />
       <Route path="/cars" element={ <ViewCarsRoute />} />
       <Route path="/cars/:carid" element={ <ViewSingleCarRoute />} />
-
+      <Route path="cars-single-add" element={ <AddCarRoute />} />
       <Route path="/cars/update" element={ <UpdateCarRoute /> }/>
 
       

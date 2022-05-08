@@ -143,6 +143,92 @@ app.get("/api/owners/:name", (req, res, next) => {
     });
 });
 
+
+
+
+
+// endpoint to add a single new car
+app.post("/api/cars-single-add/", (req, res, next) => {
+
+    // initialize the sql command and the parameter array
+    var sql = `INSERT INTO Cars (Car_ID, Year, Make, Model, 
+        Racer_Turbo, Racer_Supercharged, Racer_Performance, Racer_Horsepower, 
+        Car_Overall, Engine_Modifications, Engine_Performance, Engine_Chrome, Engine_Detailing, Engine_Cleanliness, 
+        Body_Frame_Undercarriage, Body_Frame_Suspension, Body_Frame_Chrome, Body_Frame_Detailing, Body_Frame_Cleanliness, 
+        Mods_Paint, Mods_Body, Mods_Wrap, Mods_Rims, Mods_Interior, Mods_Other, Mods_ICE, Mods_Aftermarket, Mods_WIP, Mods_Overall) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+    var params = []
+
+    // create an array of potential errors
+    var errors = []
+    if(!req.body.carid && req.body.carid != 0) { errors.push("No Car ID specified"); }
+    if(!req.body.year && req.body.year != 0) { errors.push("No Year specified"); }
+    if(!req.body.make) { errors.push("No Make specified"); }
+    if(!req.body.model) { errors.push("No Model specified"); }
+    if(!req.body.racerturbo && req.body.racerturbo != 0) { errors.push("No Racer Turbo score specified"); }
+    if(!req.body.racersupercharged && req.body.racersupercharged != 0) { errors.push("No Racer Supercharged score specified"); }
+    if(!req.body.racerperformance && req.body.racerperformance != 0) { errors.push("No Racer Performance score specified"); }
+    if(!req.body.racerhorsepower && req.body.racerhorsepower != 0) { errors.push("No Racer Horsepower score specified"); }
+    if(!req.body.caroverall && req.body.caroverall != 0) { errors.push("No Car Overall score specified"); }
+    if(!req.body.enginemodifications && req.body.enginemodifications != 0) { errors.push("No Engine Modifications score specified"); }
+    if(!req.body.engineperformance && req.body.engineperformance != 0) { errors.push("No Engine Performance score specified"); }
+    if(!req.body.enginechrome && req.body.enginechrome != 0) { errors.push("No Engine Chrome score specified"); }
+    if(!req.body.enginedetailing && req.body.enginedetailing != 0) { errors.push("No Engine Detailing score specified"); }
+    if(!req.body.enginecleanliness && req.body.enginecleanliness != 0) { errors.push("No Engine Cleanliness score specified"); }
+    if(!req.body.bfundercarriage && req.body.bfundercarriage != 0) { errors.push("No Body Frame Undercarriage score specified"); }
+    if(!req.body.bfsuspension && req.body.bfsuspension != 0) { errors.push("No Body Frame Suspension score specified"); }
+    if(!req.body.bfchrome && req.body.bfchrome != 0) { errors.push("No Body Frame Chrome score specified"); }
+    if(!req.body.bfdetailing && req.body.bfdetailing != 0) { errors.push("No Body Frame Detailing score specified"); }
+    if(!req.body.bfcleanliness && req.body.bfcleanliness != 0) { errors.push("No Body Frame Cleanliness score specified"); }
+    if(!req.body.modspaint && req.body.modspaint != 0) { errors.push("No Mods Paint score specified"); }
+    if(!req.body.modsbody && req.body.modsbody != 0) { errors.push("No Mods Body score specified"); }
+    if(!req.body.modswrap && req.body.modswrap != 0) { errors.push("No Mods Wrap score specified"); }
+    if(!req.body.modsrims && req.body.modsrims != 0) { errors.push("No Mods Rims score specified"); }
+    if(!req.body.modsinterior && req.body.modsinterior != 0) { errors.push("No Mods Interior score specified"); }
+    if(!req.body.modsother && req.body.modsother != 0) { errors.push("No Mods Other score specified"); }
+    if(!req.body.modsice && req.body.modsice != 0) { errors.push("No Mods ICE score specified"); }
+    if(!req.body.modsaftermarket && req.body.modsaftermarket != 0) { errors.push("No Mods Aftermarket score specified"); }
+    if(!req.body.modswip && req.body.modswip != 0) { errors.push("No Mods WIP score specified"); }
+    if(!req.body.modsoverall && req.body.modsoverall != 0) { errors.push("No Mods Overall specified"); }
+
+    // indicate any errors
+    if(errors.length) {
+        res.status(400).json({"error": errors.join(",")});
+        return;
+    }
+
+    // push each object that was passed in to the params array
+    params.push(req.body.carid, req.body.year, req.body.make, req.body.model, 
+        req.body.racerturbo, req.body.racersupercharged, req.body.racerperformance, req.body.racerhorsepower, 
+        req.body.caroverall, req.body.enginemodifications, req.body.engineperformance, req.body.enginechrome, req.body.enginedetailing, req.body.enginecleanliness, 
+        req.body.bfundercarriage, req.body.bfsuspension, req.body.bfchrome, req.body.bfdetailing, req.body.bfcleanliness, 
+        req.body.modspaint, req.body.modsbody, req.body.modswrap, req.body.modsrims, req.body.modsinterior, req.body.modsother, req.body.modsice, req.body.modsaftermarket, req.body.modswip, req.body.modsoverall)
+    
+    db.run(sql, params, function(err, result) {
+
+        // error checking
+        if(err) {
+            res.status(400).json({"error": err.message})
+            return;
+        }
+
+        // successful execution
+        res.json({
+            "message": "success",
+            "data": params,
+            "id": this.lastID
+        })
+    });
+});
+
+
+
+
+
+
+
+
+
 // endpoint to add a new car/new cars
 // multiple cars can be added as JSON objects
 app.post("/api/cars/", (req, res, next) => {
