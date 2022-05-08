@@ -35,7 +35,7 @@ This project is a backend API built using a combination of SQL and JavaScript th
 After cloning the project repository, cd into the [lab4_files](../lab4_files/) folder and run the following two lines of code to create the database.
 
 ```
-chmod u+x create_databse.sql
+chmod u+x create_database.sql
 ./create_database.sql
 ```
 
