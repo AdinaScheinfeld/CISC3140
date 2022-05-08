@@ -48,7 +48,6 @@ function ViewOwners() {
             {(typeof backendData.data === 'undefined') ? (
                 <div>
                     <Navbar />
-                    <div className="blankSpace"></div>
                     <OwnersNavbar />
 
                     <p>Loading...</p>
@@ -57,82 +56,81 @@ function ViewOwners() {
                 <div>
 
                     <Navbar />
-                    <div className="blankSpace"></div>
                     <OwnersNavbar />
 
                     <ViewSingleOwner />
 
-                    <h1>Begin typing a name or email address: </h1>
-                    <form onSubmit={submitHandler}>
-                        <input type="text" value={name} placeholder="Name" onChange={e => setName(e.target.value)} />
-                        <input type="text" value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} />
-                        <button type="submit">Submit</button>
-                    </form>
+                    <div className="ownersDisplay">
+                        <h2>Begin typing a name and/or email address to view owners that meet the desired criteria. </h2>
+                        <form onSubmit={submitHandler} className="ownersForm">
+                            <input type="text" value={name} placeholder="Name" onChange={e => setName(e.target.value)} className="ownersInput"/>
+                            <input type="text" value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} className="ownersInput"/>
+                            <button type="submit" className='ownersButton'>Search</button>
+                        </form>
 
-                    <h1>Table of Owners</h1>
-
-                    <table className="owner-table">
-                        <tbody>
-                            <tr>
-                                <th>Car ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                            </tr>
-                
-                            {
-                            // allow user to specify a name and email address
-                            (name !== '' && email !== ''
-                            ) ? (
-                                backendData.data
-                                .filter(owner => owner.Name.toLowerCase().startsWith(name.toLowerCase()))
-                                .filter(owner => owner.Email.toLowerCase().startsWith(email.toLowerCase()))
-                                .map((owner, i) => (
-                                    <tr key={i}>
-                                        <td>{ owner.Car_ID }</td>
-                                        <td>{ owner.Name }</td>
-                                        <td>{ owner.Email }</td>
-                                    </tr>
-                                ))
-                            ) : (
-                                // allow user to specify a name
-                                (name !== '') 
-                            ) ? (
-                                backendData.data
-                                .filter(owner => owner.Name.toLowerCase().startsWith(name.toLowerCase()))
-                                .map((owner, i) => (
-                                    <tr key={i}>
-                                        <td>{ owner.Car_ID }</td>
-                                        <td>{ owner.Name }</td>
-                                        <td>{ owner.Email }</td>
-                                    </tr> 
-                                ))
-                            ) : (
-                                // allow user to specify an email address
-                                (email !== '') 
-                            ) ? (
-                                backendData.data
-                                .filter(owner => owner.Email.toLowerCase().startsWith(email.toLowerCase()))
-                                .map((owner, i) => (
-                                    <tr key={i}>
-                                        <td>{ owner.Car_ID }</td>
-                                        <td>{ owner.Name }</td>
-                                        <td>{ owner.Email }</td>
-                                    </tr> 
-                                ))
-                            ) : (
-                                // if user does not specify a name or email address, display all owners
-                                backendData.data.map((owner, i) => (
-                                <tr key={i}>
-                                    <td>{ owner.Car_ID }</td>
-                                    <td>{ owner.Name }</td>
-                                    <td>{ owner.Email }</td>
+                        <table className="ownersTable">
+                            <tbody>
+                                <tr>
+                                    <th className='ownersHeaderCell'>Car ID</th>
+                                    <th className='ownersHeaderCell'>Name</th>
+                                    <th className='ownersHeaderCell'>Email</th>
                                 </tr>
-                            )))
+                    
+                                {
+                                // allow user to specify a name and email address
+                                (name !== '' && email !== ''
+                                ) ? (
+                                    backendData.data
+                                    .filter(owner => owner.Name.toLowerCase().startsWith(name.toLowerCase()))
+                                    .filter(owner => owner.Email.toLowerCase().startsWith(email.toLowerCase()))
+                                    .map((owner, i) => (
+                                        <tr key={i}>
+                                            <td className='ownersCell'>{ owner.Car_ID }</td>
+                                            <td className='ownersCell'>{ owner.Name }</td>
+                                            <td className='ownersCell'>{ owner.Email }</td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    // allow user to specify a name
+                                    (name !== '') 
+                                ) ? (
+                                    backendData.data
+                                    .filter(owner => owner.Name.toLowerCase().startsWith(name.toLowerCase()))
+                                    .map((owner, i) => (
+                                        <tr key={i}>
+                                            <td className='ownersCell'>{ owner.Car_ID }</td>
+                                            <td className='ownersCell'>{ owner.Name }</td>
+                                            <td className='ownersCell'>{ owner.Email }</td>
+                                        </tr> 
+                                    ))
+                                ) : (
+                                    // allow user to specify an email address
+                                    (email !== '') 
+                                ) ? (
+                                    backendData.data
+                                    .filter(owner => owner.Email.toLowerCase().startsWith(email.toLowerCase()))
+                                    .map((owner, i) => (
+                                        <tr key={i}>
+                                            <td className='ownersCell'>{ owner.Car_ID }</td>
+                                            <td className='ownersCell'>{ owner.Name }</td>
+                                            <td className='ownersCell'>{ owner.Email }</td>
+                                        </tr> 
+                                    ))
+                                ) : (
+                                    // if user does not specify a name or email address, display all owners
+                                    backendData.data.map((owner, i) => (
+                                    <tr key={i}>
+                                        <td className='ownersCell'>{ owner.Car_ID }</td>
+                                        <td className='ownersCell'>{ owner.Name }</td>
+                                        <td className='ownersCell'>{ owner.Email }</td>
+                                    </tr>
+                                )))
 
-                        
-                            }
-                        </tbody>
-                    </table>
+                            
+                                }
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
             )}

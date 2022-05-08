@@ -1,0 +1,31 @@
+.addDisplay {
+    /* top right bottom left */
+    padding: 5px 20px 40px 20px;
+    background-color: lightgray;
+    margin: 30px 10px;
+    border-radius: 10px;
+}
+
+.addInput {
+    background-color: white;
+    border-color: gray;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.addButton {
+    background-color: white;
+    border-radius: 5px;
+    border-color:gray;
+}
+
+.addButton:hover {
+    background-color: lightgray;
+}
+
+.addButton:active {
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+}

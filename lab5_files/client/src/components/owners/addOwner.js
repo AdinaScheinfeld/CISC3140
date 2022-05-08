@@ -1,3 +1,5 @@
+import '../../stylesheets/owners/addOwner.css'
+
 import React, { Component } from "react";
 import axios from "axios";
 
@@ -55,12 +57,17 @@ class AddOwner extends Component {
         <Navbar />
         <OwnersNavbar />
 
-        <form onSubmit={this.submitHandler}>
-          <input type="number" name="carid" placeholder="Car ID" value={carid} onChange={this.changeHandler} />
-          <input type="text" name="name" placeholder="Name" value={name} onChange={this.changeHandler} />
-          <input type="text" name="email" placeholder="Email" value={email} onChange={this.changeHandler} />
-          <button type="submit">Submit</button>
-        </form>
+        <div className="addDisplay">
+
+          <h2>Please enter the Car ID, name, and email address of the owner to be added.</h2>
+
+          <form onSubmit={this.submitHandler}>
+            <input type="number" name="carid" placeholder="Car ID" value={carid} onChange={this.changeHandler} className="addInput" />
+            <input type="text" name="name" placeholder="Name" value={name} onChange={this.changeHandler} className="addInput"/>
+            <input type="text" name="email" placeholder="Email" value={email} onChange={this.changeHandler} className="addInput"/>
+            <button type="submit" className='addButton'>Add</button>
+          </form>
+        </div>
 
       </div>
     )

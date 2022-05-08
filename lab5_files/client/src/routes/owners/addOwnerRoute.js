@@ -4,7 +4,6 @@ import AddOwner from "../../components/owners/addOwner"
 export default function AddOwnerRoute() {
     return (
         <div>
-            <h2>Add Owner</h2>
             <AddOwner />
         </div>
     )

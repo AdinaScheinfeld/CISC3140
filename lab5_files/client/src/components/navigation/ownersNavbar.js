@@ -12,7 +12,7 @@ export default function OwnersNavbar() {
                 <Link to='/owners/landing' className='ownersLink'>Owners Home</Link>
                 <Link to='/owners' className='ownersLink'>View Owners</Link>
                 <Link to='/owners-single-add' className='ownersLink'>Add Owner</Link>
-                <Link to='/owners/:carid' className='ownersLink'>Update Owner</Link>
+                <Link to='/owners/update' className='ownersLink'>Update Owner</Link>
             </nav>
         </div>
     )

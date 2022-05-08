@@ -1,3 +1,5 @@
+import "../../stylesheets/owners/updateOwner.css"
+
 import React, { useState } from "react";
 import axios from "axios";
 
@@ -39,20 +41,26 @@ export default function UpdateOwner() {
 
     // return a form to be used to update an owner in the database
     return (
-      <div>
+      <div className="container">
 
         <Navbar />
         <OwnersNavbar />
 
-        <form onSubmit={submitHandler}>
-            <label>
-                Car ID: 
-                <input type="number" value={carid} onChange={e => setCarID(e.target.value)} />
-            </label>
-            <input type="text" value={name} placeholder="Name" onChange={e => setName(e.target.value)} />
-            <input type="text" value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} />
-            <button type="submit">Submit</button>
-        </form>
+        <div className="updateContainer">
+
+            <h2>Please enter the Car ID, name, and email address of the owner to be updated.</h2>
+
+            <form onSubmit={submitHandler}>
+                <label>
+                    Car ID: 
+                    <input type="number" value={carid} onChange={e => setCarID(e.target.value)} className="updateInput"/>
+                </label>
+                <input type="text" value={name} placeholder="Name" onChange={e => setName(e.target.value)} className="updateInput"/>
+                <input type="text" value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} className="updateInput"/>
+                <button type="submit" className="updateButton">Submit</button>
+            </form>
+        </div>
+
 
       </div>
     )

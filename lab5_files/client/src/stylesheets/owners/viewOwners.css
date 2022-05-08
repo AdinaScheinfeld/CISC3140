@@ -1,0 +1,59 @@
+.ownersDisplay {
+    /* top right bottom left */
+    padding: 1px 20px 10px 20px;
+    background-color: lightgray;
+    margin: 30px 10px;
+    border-radius: 10px;
+}
+
+.ownersForm {
+    /* background-color: red; */
+    /* top right bottom left */
+    margin: 10px 0px 20px 0px;
+}
+
+.ownersInput {
+    background-color: white;
+    border-color: gray;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.ownersButton {
+    background-color: white;
+    border-radius: 5px;
+    border-color:gray;
+}
+
+.ownersButton:hover {
+    background-color: lightgray;
+}
+
+.ownersButton:active {
+    background-color: gray;
+    color: white;
+    font-weight: bold;
+}
+
+.ownersTable {
+    /* background-color: blue; */
+    border-radius: 5px;
+    padding: 10px;
+    /* top right bottom left*/
+    margin: 10px 0px 20px 0px;
+}
+.ownersHeaderCell {
+    /* top right bottom left */
+    padding: 10px 20px 10px 10px;
+    text-align: left;
+    background-color: rgb(188, 119, 119);
+    border-radius: 5px;
+}
+
+.ownersCell {
+    background-color: rgb(251, 172, 172);
+    padding: 10px 20px 10px 10px;
+    text-align: left;
+    border-radius: 5px;
+}

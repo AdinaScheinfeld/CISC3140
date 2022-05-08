@@ -4,7 +4,6 @@ import UpdateOwner from "../../components/owners/updateOwner"
 export default function UpdateOwnerRoute() {
     return (
         <div>
-            <h2>Update Owner</h2>
             <UpdateOwner />
         </div>
     )

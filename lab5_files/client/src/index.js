@@ -37,7 +37,7 @@ root.render(
       <Route path="/owners" element={ <ViewOwnersRoute />} />
       <Route path="/owners/:name" element={ <ViewSingleOwnerRoute />} />
       <Route path="owners-single-add" element={ <AddOwnerRoute />} />
-      <Route path="/owners/:carid" element={ <UpdateOwnerRoute /> }/>
+      <Route path="/owners/update" element={ <UpdateOwnerRoute /> }/>
     </Routes>
 
   </BrowserRouter>,

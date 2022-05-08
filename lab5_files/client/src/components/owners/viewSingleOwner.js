@@ -44,11 +44,13 @@ export default function ViewSingleOwner(props) {
                         <p>{" "}</p>
                     ): (
                         <table className="singleOwnerTable">
-                            <tr>
-                                <td className="singleOwnerCell">Car ID: {backendData.data.Car_ID}</td>
-                                <td className="singleOwnerCell">Name: {backendData.data.Name}</td>
-                                <td className="singleOwnerCell">Email: {backendData.data.Email}</td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td className="singleOwnerCell">Car ID: {backendData.data.Car_ID}</td>
+                                    <td className="singleOwnerCell">Name: {backendData.data.Name}</td>
+                                    <td className="singleOwnerCell">Email: {backendData.data.Email}</td>
+                                </tr>
+                            </tbody>
                         </table>
                     )}
                 </div>
