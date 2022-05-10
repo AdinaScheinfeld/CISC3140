@@ -10,7 +10,7 @@ export default function Navbar() {
         <div className="container">
             <nav>
                 <Link to="/" className='link'>Home</Link>
-                <Link to="/cars" className='link'>Cars</Link>
+                <Link to="/cars/landing" className='link'>Cars</Link>
                 <Link to="/owners/landing" className='link'>Owners</Link>
             </nav>
         </div>
