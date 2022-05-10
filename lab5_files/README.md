@@ -17,11 +17,11 @@ This project is a frontend interface built using a combination of HTML, CSS, Jav
 
 The [client](./client/) folder contains all the source code for the project. Within the [client](./client/) folder, the [src](./client/src/) folder contains the actual code files. The [src](./client/src/) folder contains a [components](./client/src/components/) folder, a [routes](./client/src/routes/) folder, and a [stylesheets](./client/src/stylesheets/) folder.
 
-* The [components](./client/src/components/) folder contains a [navigation](./client/src/components/navigation/) with components for navigation, a [cars](./client/src/components/cars/) with components for  the pages about the cars, and an [owners](./client/src/components/owners/) with components for the pages about the owners. 
+* The [components](./client/src/components/) folder contains a [navigation](./client/src/components/navigation/) folder with components for navigation, a [cars](./client/src/components/cars/) folder with components for  the pages about the cars, and an [owners](./client/src/components/owners/) folder with components for the pages about the owners. 
 
 * The [routes](./client/src/routes/) folder contains a [cars](./client/src/routes/cars/) folder with routes for the cars components and an [owners](./client/src/routes/owners/) with routes for the owners components. 
 
-* The [stylesheets](./client/src/stylesheets/) folder contains a [navigation](./client/src/stylesheets/navigation/) with stylesheets for the navigation components, a [cars](./client/src/stylesheets/cars/) folder with stylesheets for the cars componenets, and an [owners](./client/src/stylesheets/owners/) folder with stylesheets for the owners components. 
+* The [stylesheets](./client/src/stylesheets/) folder contains a [navigation](./client/src/stylesheets/navigation/) folder with stylesheets for the navigation components, a [cars](./client/src/stylesheets/cars/) folder with stylesheets for the cars componenets, and an [owners](./client/src/stylesheets/owners/) folder with stylesheets for the owners components. 
 
 * [App.js](./client/src/App.js) is the homepage of the application and [App.css](./client/src/App.css) is the stylesheet for [App.js](./client/src/App.js).
 
