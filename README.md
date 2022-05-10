@@ -11,3 +11,7 @@ The [lab2_files](lab2_files) folder contains all input, output, and scripts for 
 ## Lab 4
 
 The [lab4_files](lab4_files) folder contains all input, source code files, and documentation for CISC 3140 lab4. The folder also contains a [README.md](./lab4_files/README.md) file with a description of the report, a list of the project's dependencies, a summary of the report's contents, and a getting started guide. 
+
+## Lab 5
+
+The [lab5_files](./lab5_files/) folder contains all source code files and documentation for the CISC 3140 lab5. The folder also contains a [README.md](./lab5_files/README.md) file with a description of the report, a list of the project's dependencies, a summary of the report's contents, and a getting started guide. 
