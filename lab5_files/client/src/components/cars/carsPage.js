@@ -14,12 +14,12 @@ export default function CarsPage() {
         <div>
             <Navbar />
             <CarsNavbar />
-            <div className='outerContainer'>
-                <div className='innerContainer'>
-                    <h1 className='homepageHeader'>Cars Homepage</h1>
-                    <p>Please use the links in the navigation bar above to view the cars in the database, to add a car to the database, or to update a car already in the database.</p>
-                    <div className='imgBox'>
-                        <img src={carsImage} alt="cars" />
+            <div className='outerCarContainer'>
+                <div className='innerCarContainer'>
+                    <h1 className='carHomepageHeader'>Cars Homepage</h1>
+                    <p className='carP'>Please use the links in the navigation bar above to view the cars in the database, to add a car to the database, or to update a car already in the database.</p>
+                    <div className='carImgBox'>
+                        <img src={carsImage} alt="cars" className='carImg'/>
                     </div>
                 </div>
             </div>

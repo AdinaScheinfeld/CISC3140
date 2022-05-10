@@ -1,10 +1,10 @@
-.outerContainer {
+.ownersOuterContainer {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.innerContainer {
+.ownersInnerContainer {
     background-color: lightgray;
     border-radius: 10px;
     display: inline-block;
@@ -13,20 +13,20 @@
     margin: 50px;
 }
 
-.homepageHeader {
+.ownersHomepageHeader {
     text-align: center;
 }
 
-p {
+.ownersP {
     text-align: center;
 }
 
-img {
+.ownersImg {
     width: 1100px;
     height: 800px;
 }
 
-.imgBox {
+.ownersImgBox {
     display: flex;
     align-items: center;
     justify-content: center;

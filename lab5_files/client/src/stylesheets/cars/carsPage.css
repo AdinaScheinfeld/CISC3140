@@ -1,10 +1,10 @@
-.outerContainer {
+.outerCarContainer {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.innerContainer {
+.innerCarContainer {
     background-color: lightgray;
     border-radius: 10px;
     display: inline-block;
@@ -13,20 +13,20 @@
     margin: 50px;
 }
 
-.homepageHeader {
+.carHomepageHeader {
     text-align: center;
 }
 
-p {
+.carP {
     text-align: center;
 }
 
-img {
+.carImg {
     width: 1100px;
     height: 800px;
 }
 
-.imgBox {
+.carImgBox {
     display: flex;
     align-items: center;
     justify-content: center;

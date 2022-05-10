@@ -14,12 +14,12 @@ export default function OwnersPage() {
         <div>
             <Navbar />
             <OwnersNavbar />
-            <div className='outerContainer'>
-                <div className='innerContainer'>
-                    <h1 className='homepageHeader'>Owners Homepage</h1>
-                    <p>Please use the links in the navigation bar above to view the owners in the database, to add an owner to the database, or to update an owner already in the database.</p>
-                    <div className='imgBox'>
-                        <img src={ownersImage} alt="cars" />
+            <div className='ownersOuterContainer'>
+                <div className='ownersInnerContainer'>
+                    <h1 className='ownersHomepageHeader'>Owners Homepage</h1>
+                    <p className='ownersP'>Please use the links in the navigation bar above to view the owners in the database, to add an owner to the database, or to update an owner already in the database.</p>
+                    <div className='ownersImgBox'>
+                        <img src={ownersImage} alt="cars" className='ownersImg'/>
                     </div>
                 </div>
             </div>
