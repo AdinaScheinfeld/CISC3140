@@ -61,7 +61,8 @@ function ViewCars() {
                     <ViewSingleCar />
 
                     <div className="carsDisplay">
-                        <h2>Begin typing a make and/or model to receive information on cars that meet the desired criteria. </h2>
+                        <h2>All the cars in the database are listed below.</h2>
+                        <p>Begin typing a make and/or model to receive information on cars that meet the desired criteria.</p>
                         <form onSubmit={submitHandler} className="carsForm">
                             <input type="text" value={make} placeholder="Make" onChange={e => setMake(e.target.value)} className="carsInput"/>
                             <input type="text" value={model} placeholder="Model" onChange={e => setModel(e.target.value)} className="carsInput"/>

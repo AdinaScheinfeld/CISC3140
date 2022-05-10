@@ -61,7 +61,8 @@ function ViewOwners() {
                     <ViewSingleOwner />
 
                     <div className="ownersDisplay">
-                        <h2>Begin typing a name and/or email address to view owners that meet the desired criteria. </h2>
+                        <h2>All the owners in the database are listed below.</h2>
+                        <p>Begin typing a name and/or email address to view owners that meet the desired criteria. </p>
                         <form onSubmit={submitHandler} className="ownersForm">
                             <input type="text" value={name} placeholder="Name" onChange={e => setName(e.target.value)} className="ownersInput"/>
                             <input type="text" value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} className="ownersInput"/>
