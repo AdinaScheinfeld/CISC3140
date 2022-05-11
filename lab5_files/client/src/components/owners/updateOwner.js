@@ -48,7 +48,7 @@ export default function UpdateOwner() {
 
         <div className="updateContainer">
 
-            <h2>Please enter the Car ID, name, and email address of the owner to be updated.</h2>
+            <h2>Please enter the Car ID, name, and email address of the owner to be updated, then press the Update button.</h2>
             <p>No fields can be left blank-you must fill in all fields. If you do not want to update one of the fileds, please enter the original data. 
                 For example, if you want to update an owner's email address but not their name, please enter the original name and the new email address.</p>
 

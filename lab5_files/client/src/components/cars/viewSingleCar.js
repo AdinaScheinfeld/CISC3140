@@ -32,7 +32,9 @@ export default function ViewSingleCar(props) {
 
             <div className="singleCarDisplay">
 
-                <h2>Enter the Car ID of an car to view information on that car.</h2>
+                <h2>To view information on a single car, enter the Car ID of that car, then press the Search button.</h2>
+                <p>If the enter the Car ID of a car that is not present in the database, no information will appear. <br></br>
+                    You may add the car to the database using the Add Car link in the navigation bar above. </p>
 
                 <form onSubmit={submitHandler}>
                     <input type="text" value={carid} placeholder="Car ID" onChange={e => setCarid(e.target.value)} className="singleCarInput"/>

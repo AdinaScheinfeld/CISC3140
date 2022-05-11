@@ -32,7 +32,10 @@ export default function ViewSingleOwner(props) {
 
             <div className="display">
 
-                <h2>Enter the name of an owner to view information on that owner's car.</h2>
+                <h2>To view information on a single owner, enter the name of the owner, then press the Search button.</h2>
+                <p>You must enter the owner's name in sentence case, i.e. the first letter of the name must be a capital letter and the rest of the name must be lower case.</p>
+                <p>If the enter the name of an owner who is not present in the database, no information will appear. <br></br>
+                    You may add the owner to the database using the Add Owner link in the navigation bar above. </p>
 
                 <form onSubmit={submitHandler}>
                     <input type="text" value={name} placeholder="Owner's name" onChange={e => setName(e.target.value)} className="singleOwnerInput"/>

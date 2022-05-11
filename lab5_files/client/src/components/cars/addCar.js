@@ -6,8 +6,6 @@ import axios from "axios";
 import Navbar from "../navigation/navbar";
 import CarsNavbar from "../navigation/carsNavbar";
 
-// UP TO HERE
-
 class AddCar extends Component {
 
   // constructor
@@ -113,8 +111,9 @@ class AddCar extends Component {
 
         <div className="addCarDisplay">
 
-          <h2>Please enter the information about the car to be added.</h2>
-
+          <h2>Please enter the information about the car to be added, then press the Add button.</h2>
+          <p>An attempt to add a car whose Car ID is already in the database will be blocked.</p>
+          
           <form onSubmit={this.submitHandler}>
             <input type="number" name="carid" placeholder="Car ID" value={carid} onChange={this.changeHandler} className="addCarInput" />
             <input type="text" name="year" placeholder="Year" value={year} onChange={this.changeHandler} className="addCarInput"/>

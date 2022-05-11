@@ -59,7 +59,8 @@ class AddOwner extends Component {
 
         <div className="addDisplay">
 
-          <h2>Please enter the Car ID, name, and email address of the owner to be added.</h2>
+          <h2>Please enter the Car ID, name, and email address of the owner to be added, then press the Add button.</h2>
+          <p>An attempt to add a car whose Car ID is already in the database will be blocked.</p>
 
           <form onSubmit={this.submitHandler}>
             <input type="number" name="carid" placeholder="Car ID" value={carid} onChange={this.changeHandler} className="addInput" />
