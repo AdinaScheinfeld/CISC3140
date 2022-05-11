@@ -62,11 +62,40 @@ function ViewCars() {
 
                     <div className="carsDisplay">
                         <h2>All the cars in the database are listed below.</h2>
-                        <p>Begin typing a make and/or model to receive information on cars that meet the desired criteria.</p>
+                        <p>Select a make fron the dropdown menu or begin typing a make and/or model to receive information on cars that meet the desired criteria.</p>
                         <form onSubmit={submitHandler} className="carsForm">
 
                             {/* {get desired make and/or model name from user} */}
-                            <input type="text" value={make} placeholder="Make" onChange={e => setMake(e.target.value)} className="carsInput"/>
+
+                            {/* {code to get make from textbox} */}
+                            {/* <input type="text" value={make} placeholder="Make" onChange={e => setMake(e.target.value)} className="carsInput"/> */}
+
+                            {/* {dropdown menu to get make from user} */}
+                            <input list="makes" name="myMake" placeholder="Make" onChange={e => setMake(e.target.value)} className="carsInput" />
+                            <datalist id="makes">
+                                <option value="Acura" />
+                                <option value="Audi" />
+                                <option value="Bmw" />
+                                <option value="Chevy" />
+                                <option value="Chrystler" />
+                                <option value="Dodge" />
+                                <option value="Ford" />
+                                <option value="Honda" />
+                                <option value="Hyundai" />
+                                <option value="Infiniti" />
+                                <option value="Jeep" />
+                                <option value="Lexus" />
+                                <option value="Mazda" />
+                                <option value="Mercedes" />
+                                <option value="Mitsu" />
+                                <option value="Nissan" />
+                                <option value="Scion" />
+                                <option value="Subaru" />
+                                <option value="Toyota" />
+                                <option value="Volkswagen" />
+                                <option value="Volvo" />
+                            </datalist>
+
                             <input type="text" value={model} placeholder="Model" onChange={e => setModel(e.target.value)} className="carsInput"/>
                             <button type="submit" className='carsButton'>Search</button>
                         </form>
