@@ -54,4 +54,10 @@ npm start
 * View cars filtered by Make: Click Cars -> Click View Cars -> Enter desired Make into Make input field -> Click Search -> View cars of desired make
 * View cars filtered by Model: Click Cars -> Click View Cars -> Enter desired Model into Model input field -> Click Search -> View cars of desired model
 * Add car to database: Click Cars -> Click Add Car -> Enter information on new car into the input fields -> Click Add
-* Update information on car already in database: Click Cars -> Click Update Car -> Enter Car ID, Year, Make, and Model into respective input fields -> Click Update
+* Update information on car already in database: Click Cars -> Click Update Car -> Enter Car ID, Year, Make, and Model into the respective input fields -> Click Update
+* View all owners in database: Click Owners -> Click View Owners -> View list of all owners in database
+* View single owner in database: Click Owners -> Click View Owners -> Enter owner's name into input field -> Click Search -> View information on desired owner
+* View owners filtered by Make: Click Owners -> Click View Owners -> Enter desired owner's name into Name input field -> Click Search -> View owners with desired name
+* View owners filtered by Email: Click Owners -> Click View Owners -> Enter email address of desired owner into Email input field -> Click Search -> View owners with desired email address
+* Add owner to database: Click Owners -> Click Add Owner -> Enter information on new owner into the input fields -> Click Add
+* Update information on car already in database: Click Owners -> Click Update Owner -> Enter Car ID, Name, and Email address into the respective input fields -> Click Update
