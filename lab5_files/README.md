@@ -44,5 +44,7 @@ npm start
 ```
 
 ## Storyoard
+![storyboard](./src/images/wireframes.png)
+
 <img src="labs/lab_repo/CISC3140/lab5_files/client/src/images/wireframes.png" />
 <img src="./src/images/wireframes.png" />
