@@ -46,3 +46,12 @@ npm start
 ## Storyboard
 
 ![storyboard](wireframes.png)
+
+## User Stories
+
+* View all cars in database: Click Cars -> Click View Cars -> View list of all cars in database
+* View single car in database: Click Cars -> Click View Cars -> Enter Car ID into input field -> Click Search -> View information on desired car
+* View cars filtered by Make: Click Cars -> Click View Cars -> Enter desired Make into Make input field -> Click Search -> View cars of desired make
+* View cars filtered by Model: Click Cars -> Click View Cars -> Enter desired Model into Model input field -> Click Search -> View cars of desired model
+* Add car to database: Click Cars -> Click Add Car -> Enter information on new car into the input fields -> Click Add
+* Update information on car already in database: Click Cars -> Click Update Car -> Enter Car ID, Year, Make, and Model into respective input fields -> Click Update
