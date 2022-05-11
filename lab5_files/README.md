@@ -43,6 +43,6 @@ To connect to the frontend application, cd into the [client folder](./client/) a
 npm start
 ```
 
-## Storyoard
+## Storyboard
 
 ![storyboard](wireframes.png)
