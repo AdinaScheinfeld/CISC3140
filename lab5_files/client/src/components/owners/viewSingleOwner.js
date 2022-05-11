@@ -2,7 +2,8 @@ import '../../stylesheets/owners/viewSingleOwner.css'
 
 import React, { useState } from "react";
 
-export default function ViewSingleOwner(props) {
+// component to view a single owner in the database
+export default function ViewSingleOwner() {
 
     // initialize state variables
     const [backendData, setBackendData] = useState([{}])
@@ -38,6 +39,8 @@ export default function ViewSingleOwner(props) {
                     You may add the owner to the database using the Add Owner link in the navigation bar above. </p>
 
                 <form onSubmit={submitHandler}>
+
+                    {/* {get owner's name from input field} */}
                     <input type="text" value={name} placeholder="Owner's name" onChange={e => setName(e.target.value)} className="singleOwnerInput"/>
                     <button type="submit" className="singleOwnerButton">Search</button>
                 </form>
@@ -46,6 +49,7 @@ export default function ViewSingleOwner(props) {
                     {(typeof backendData.data === 'undefined') ? (
                         <p>{" "}</p>
                     ): (
+                        // table with information on desired owner
                         <table className="singleOwnerTable">
                             <tbody>
                                 <tr>

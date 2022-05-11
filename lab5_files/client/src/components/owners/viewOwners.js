@@ -92,7 +92,7 @@ function ViewOwners() {
                                         </tr>
                                     ))
                                 ) : (
-                                    // allow user to specify a name
+                                    // allow user to specify only a name
                                     (name !== '') 
                                 ) ? (
                                     backendData.data
@@ -105,7 +105,7 @@ function ViewOwners() {
                                         </tr> 
                                     ))
                                 ) : (
-                                    // allow user to specify an email address
+                                    // allow user to specify only an email address
                                     (email !== '') 
                                 ) ? (
                                     backendData.data

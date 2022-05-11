@@ -6,6 +6,7 @@ import axios from "axios";
 import Navbar from "../navigation/navbar";
 import OwnersNavbar from "../navigation/ownersNavbar";
 
+// component to add an owner to the database
 class AddOwner extends Component {
 
   // constructor
@@ -63,6 +64,8 @@ class AddOwner extends Component {
           <p>An attempt to add a car whose Car ID is already in the database will be blocked.</p>
 
           <form onSubmit={this.submitHandler}>
+
+            {/* {get car ID, name, and email address from input fields} */}
             <input type="number" name="carid" placeholder="Car ID" value={carid} onChange={this.changeHandler} className="addInput" />
             <input type="text" name="name" placeholder="Name" value={name} onChange={this.changeHandler} className="addInput"/>
             <input type="text" name="email" placeholder="Email" value={email} onChange={this.changeHandler} className="addInput"/>

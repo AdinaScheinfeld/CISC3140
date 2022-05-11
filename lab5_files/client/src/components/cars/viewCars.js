@@ -16,7 +16,7 @@ function ViewCars() {
     // initialize state variables to view all data
     const [backendData, setBackendData] = useState([{}])
 
-    // function to get cars with the make and or model specified by user in form
+    // function to get cars with the make and/or model specified by user in form
     const submitHandler = (e) => {
 
         e.preventDefault()
@@ -64,6 +64,8 @@ function ViewCars() {
                         <h2>All the cars in the database are listed below.</h2>
                         <p>Begin typing a make and/or model to receive information on cars that meet the desired criteria.</p>
                         <form onSubmit={submitHandler} className="carsForm">
+
+                            {/* {get desired make and/or model name from user} */}
                             <input type="text" value={make} placeholder="Make" onChange={e => setMake(e.target.value)} className="carsInput"/>
                             <input type="text" value={model} placeholder="Model" onChange={e => setModel(e.target.value)} className="carsInput"/>
                             <button type="submit" className='carsButton'>Search</button>
@@ -96,7 +98,7 @@ function ViewCars() {
                                         </tr>
                                     ))
                                 ) : (
-                                    // allow user to specify a make
+                                    // allow user to specify only a make
                                     (make !== '') 
                                 ) ? (
                                     backendData.data
@@ -111,7 +113,7 @@ function ViewCars() {
                                         </tr> 
                                     ))
                                 ) : (
-                                    // allow user to specify an model
+                                    // allow user to specify only a model
                                     (model !== '') 
                                 ) ? (
                                     backendData.data

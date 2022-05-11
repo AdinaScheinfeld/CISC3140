@@ -4,6 +4,7 @@ import Navbar from "./components/navigation/navbar";
 
 import homeCar from "./images/homeCar.jpg"
 
+// homepage
 export default function App() {
   
   return (

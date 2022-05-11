@@ -56,6 +56,8 @@ export default function UpdateCar() {
                 For example, if you want to update a car's make but not its model or year, please enter the original model and year and the new make.</p>
             
             <form onSubmit={submitHandler}>
+
+                {/* {get updated information from input fields} */}
                 <input type="number" value={carid} onChange={e => setCarID(e.target.value)} placeholder="Car ID" className="updateCarInput"/>
                 <input type="text" value={year} placeholder="Year" onChange={e => setYear(e.target.value)} className="updateCarInput"/>
                 <input type="text" value={make} placeholder="Make" onChange={e => setMake(e.target.value)} className="updateCarInput"/>

@@ -53,6 +53,8 @@ export default function UpdateOwner() {
                 For example, if you want to update an owner's email address but not their name, please enter the original name and the new email address.</p>
 
             <form onSubmit={submitHandler}>
+
+                {/* {get car ID, name, and email address from input fields} */}
                 <input type="number" value={carid} onChange={e => setCarID(e.target.value)} placeholder="Car ID" className="updateInput"/>
                 <input type="text" value={name} placeholder="Name" onChange={e => setName(e.target.value)} className="updateInput"/>
                 <input type="text" value={email} placeholder="Email" onChange={e => setEmail(e.target.value)} className="updateInput"/>

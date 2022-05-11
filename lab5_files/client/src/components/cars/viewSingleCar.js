@@ -2,6 +2,7 @@ import '../../stylesheets/cars/viewSingleCar.css'
 
 import React, { useState } from "react";
 
+// component to display a single car in the database
 export default function ViewSingleCar(props) {
 
     // initialize state variables
@@ -37,6 +38,8 @@ export default function ViewSingleCar(props) {
                     You may add the car to the database using the Add Car link in the navigation bar above. </p>
 
                 <form onSubmit={submitHandler}>
+
+                    {/* {get Car ID of desired car from input field} */}
                     <input type="text" value={carid} placeholder="Car ID" onChange={e => setCarid(e.target.value)} className="singleCarInput"/>
                     <button type="submit" className="singleCarButton">Search</button>
                 </form>
@@ -45,6 +48,7 @@ export default function ViewSingleCar(props) {
                     {(typeof backendData.data === 'undefined') ? (
                         <p>{" "}</p>
                     ): (
+                        // display information on desired car
                         <table className="singleCarTable">
                             <tbody>
                                 <tr>

@@ -33,7 +33,7 @@
 .singleOwnerTable {
     border-radius: 5px;
     padding: 10px;
-    /* top right bottom left*/
+    /* top right bottom left */
     margin: 10px 0px 10px -15px;
     background-color: lightgray;
 }
