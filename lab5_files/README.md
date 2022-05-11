@@ -41,8 +41,6 @@ To connect to the frontend application, cd into the [client folder](./client/) a
 
 ```
 npm install
-```
-```
 npm start
 ```
 
