@@ -39,9 +39,10 @@ chmod u+x create_database.sql
 ./create_database.sql
 ```
 
-Then, run the following line of code to connect to the SQLite database. By default the server runs on localhost 8000, but this can be configured using the `HTTP_PORT` variable in the [server.js](./server.js) file. 
+Then, run the following lines of code to connect to install the project dependencies and connect to the SQLite database. By default the server runs on localhost 8000, but this can be configured using the `HTTP_PORT` variable in the [server.js](./server.js) file. 
 
 ```
+npm install
 npm run start
 ```
 
