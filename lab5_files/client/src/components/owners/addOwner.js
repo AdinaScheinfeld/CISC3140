@@ -61,6 +61,7 @@ class AddOwner extends Component {
         <div className="addDisplay">
 
           <h2>Please enter the Car ID, name, and email address of the owner to be added, then press the Add button.</h2>
+          <p>Do not leave any fields blank-You must fill in all fields.</p>
           <p>An attempt to add a car whose Car ID is already in the database will be blocked.</p>
 
           <form onSubmit={this.submitHandler}>
