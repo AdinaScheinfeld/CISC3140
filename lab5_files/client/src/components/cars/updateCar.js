@@ -52,7 +52,9 @@ export default function UpdateCar() {
         <div className="updateCarContainer">
 
             <h2>Please enter the Car ID, updated year, updated make, and updated model of the car to be updated.</h2>
-
+            <p>No fields can be left blank-you must fill in all fields. If you do not want to update one of the fileds, please enter the original data. 
+                For example, if you want to update a car's make but not its model or year, please enter the original model and year and the new make.</p>
+            
             <form onSubmit={submitHandler}>
                 <input type="number" value={carid} onChange={e => setCarID(e.target.value)} placeholder="Car ID" className="updateCarInput"/>
                 <input type="text" value={year} placeholder="Year" onChange={e => setYear(e.target.value)} className="updateCarInput"/>
